@@ -87,6 +87,16 @@
 </template>
 
 <style scoped>
+.phoneIcon {
+  width: 24px;
+  height: 24px;
+  background: url("/info/Call.svg");
+}
+.mail {
+  width: 24px;
+  height: 24px;
+  background: url("/info/Mail.svg");
+}
 .section {
   margin-top: 180px;
   margin-bottom: 100px;
@@ -94,6 +104,11 @@
   display: flex;
   flex-direction: column;
   gap: 45px;
+  @media (max-width: 1024px) {
+    margin-top: 170px;
+    margin-bottom: 0px;
+    gap: 24px;
+  }
 }
 .section__text {
   width: 960px;
@@ -102,10 +117,17 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 45px;
+  @media (max-width: 1024px) {
+    gap: 24px;
+    max-width: 960px;
+  }
 }
 .section__map {
   width: 1160px;
   margin: auto;
+  @media (max-width: 1024px) {
+    width: 100vw;
+  }
 }
 .contacts {
   display: flex;
@@ -119,12 +141,18 @@
   font-weight: 700;
   line-height: 120%; /* 48px */
   letter-spacing: -0.4px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
 }
 .textGroup {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  @media (max-width: 1024px) {
+    gap: 8px;
+  }
 }
 .f16 {
   color: black;
@@ -157,6 +185,12 @@
     font-weight: 700;
     line-height: 140%; /* 28px */
     letter-spacing: -0.2px;
+    @media (max-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 1024px) {
+    font-size: 16px;
   }
 }
 .underline {
@@ -170,6 +204,9 @@
   position: absolute;
   bottom: -4px;
   left: 0;
+  @media (max-width: 1024px) {
+    bottom: -3px;
+  }
 }
 .blue.underline::after {
   content: "";
@@ -189,6 +226,9 @@
   line-height: 140%; /* 33.6px */
   letter-spacing: -0.24px;
   display: inline;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .circle {
   display: inline-block;
@@ -202,7 +242,7 @@
 .grey {
   color: var(--grey);
   font-family: Lato;
-  font-size: 20px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
@@ -212,6 +252,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  @media (max-width: 1024px) {
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
 .map {
   width: 100%;
@@ -226,15 +270,8 @@
   align-items: flex-start;
   gap: 16px;
   border-top: 2px solid #dce6ef;
-}
-.phoneIcon {
-  width: 24px;
-  height: 24px;
-  background: url("/info/Call.svg");
-}
-.mail {
-  width: 24px;
-  height: 24px;
-  background: url("/info/Mail.svg");
+  @media (max-width: 1024px) {
+    padding-top: 20px;
+  }
 }
 </style>

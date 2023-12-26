@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import useScreenSize from "./size";
 const filtersVisible = ref(false);
 const modalVisible = ref(false);
 const openModal = () => {
@@ -8,7 +9,7 @@ const openModal = () => {
 const openFilters = () => {
   filtersVisible.value = true;
 };
-const resultType = ref<"table" | "grid">("table");
+const resultType = ref<"table" | "grid">("grid");
 const changeType = (type: "table" | "grid") => {
   resultType.value = type;
 };
@@ -98,10 +99,11 @@ const items = [
     cost: "121 486.22",
   },
 ];
+const { isDesktop } = useScreenSize();
 </script>
 <template>
   <div>
-    <div class="banner">
+    <div v-if="isDesktop" class="banner">
       <img src="/searchResult/banner.png" alt="" class="banner__img" />
       <div class="banner__text">
         <h4 class="banner__title">
@@ -118,17 +120,23 @@ const items = [
       </div>
     </div>
     <div class="filtr__row">
+      <select v-if="!isDesktop" class="select">
+        <option class="option">По соответствию</option>
+        <option class="option">дате</option>
+        <option class="option">дешевле</option>
+        <option class="option">дороже</option>
+      </select>
       <div v-on:click="openFilters" class="filtrs">
         <span class="filts__icon" />
         Фильтры
       </div>
-      <div class="filtr__btns">
+      <div v-if="isDesktop" class="filtr__btns">
         <div class="filtr__btns-item active">По соответствию</div>
         <div class="filtr__btns-item">дате</div>
         <div class="filtr__btns-item">дешевле</div>
         <div class="filtr__btns-item">дороже</div>
       </div>
-      <div class="types">
+      <div v-if="isDesktop" class="types">
         <div
           v-on:click="changeType('grid')"
           :class="resultType === 'grid' && 'active'"
@@ -157,6 +165,9 @@ const items = [
   padding: 16px 24px;
   border: 2px dashed var(--Line-2, #dce6ef);
   margin-bottom: 24px;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 .banner__img {
   width: 80px;
@@ -205,6 +216,9 @@ const items = [
   gap: 16px;
   align-items: center;
   margin-bottom: 16px;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+  }
 }
 .filtrs {
   cursor: pointer;
@@ -225,6 +239,10 @@ const items = [
   :focus {
     background: #edf1f5;
   }
+  @media (max-width: 1024px) {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
 }
 .filts__icon {
   width: 24px;
@@ -233,6 +251,9 @@ const items = [
 }
 .filtr__btns {
   display: flex;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 .filtr__btns-item {
   cursor: pointer;
@@ -252,6 +273,26 @@ const items = [
     opacity: 0.7;
   }
 }
+.select {
+  cursor: pointer;
+  color: black;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%; /* 25.6px */
+  letter-spacing: -0.16px;
+  padding: 12px 10px;
+  background: #eef2f6;
+  border: none;
+  height: 100%;
+  .option {
+    font-size: 14px !important;
+    font-family: Lato;
+    padding: 4px;
+  }
+}
+
 .types {
   display: flex;
   margin-left: auto;

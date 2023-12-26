@@ -39,10 +39,13 @@ const open = (index) => {
 <style scoped>
 .BreadCrumbs {
   position: relative;
-  z-index: 0;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+  }
 }
 .BreadCrumbs__item {
   position: relative;
@@ -56,6 +59,9 @@ const open = (index) => {
   font-weight: 500;
   line-height: 140%;
   color: black;
+  @media (max-width: 1024px) {
+    position: static;
+  }
   .title {
     text-decoration: none;
     font-family: Lato;
@@ -84,6 +90,10 @@ const open = (index) => {
   box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.16);
   &.active {
     display: flex;
+  }
+  @media (max-width: 1024px) {
+    top: 100%;
+    left: 15px;
   }
   .item {
     color: black;

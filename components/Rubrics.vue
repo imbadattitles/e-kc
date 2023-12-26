@@ -15,6 +15,16 @@
   justify-content: space-between;
   gap: 4px;
   margin-bottom: 16px;
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+    overflow-y: auto;
+    max-width: 100vh;
+    padding: 0 15px;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 .rubrics__item {
   text-decoration: none;
@@ -34,6 +44,10 @@
   &:focus {
     color: #1461b4;
     text-decoration: underline;
+  }
+  @media (max-width: 1024px) {
+    flex: none;
+    padding: 4px 12px;
   }
 }
 </style>

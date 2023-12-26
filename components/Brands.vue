@@ -25,6 +25,9 @@
 .thisContainer {
   margin: auto;
   max-width: 1060px;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+  }
 }
 .letters {
   margin-top: 75px;
@@ -33,6 +36,10 @@
   gap: 8px;
   max-width: 650px;
   margin-bottom: 40px;
+  @media (max-width: 1024px) {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
 }
 .letter {
   cursor: pointer;
@@ -52,6 +59,9 @@
 }
 .brands {
   column-count: 4;
+  @media (max-width: 1024px) {
+    column-count: 2;
+  }
 }
 
 .brands__group {

@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
+import useScreenSize from "~/components/size";
 const items = [0, 1, 2, 3];
+const { isDesktop } = useScreenSize();
 const delivery = ref("1");
 </script>
 <template>
@@ -9,7 +11,7 @@ const delivery = ref("1");
       <p class="section__title">Корзина <span>4 товара</span></p>
       <p class="cart__delete">Удалить все из корзины</p>
     </div>
-    <table class="table">
+    <table v-if="isDesktop" class="table">
       <thead class="tableHeader">
         <tr>
           <th>
@@ -55,6 +57,41 @@ const delivery = ref("1");
         </td>
       </tr>
     </table>
+    <div v-if="!isDesktop" class="grid">
+      <div v-for="(item, index) in items" :key="index" class="item">
+        <div class="left">
+          <img src="/lk/item.png" class="item__img" />
+          <div class="item__info-right">
+            <span class="like" />
+          </div>
+        </div>
+        <div class="right">
+          <a class="item__title"
+            >Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB</a
+          >
+          <div class="group">
+            <div class="over_mobile">
+              <span class="name">Цена: <span class="icon"></span></span>
+              <span class="line" />
+              <p class="important">12 151.22 ₽</p>
+            </div>
+          </div>
+          <MountInput />
+          <div class="group">
+            <div class="over_mobile">
+              <span class="name">Сумма: <span class="icon"></span></span>
+              <span class="line" />
+              <p class="important">74 444 442.22 ₽</p>
+            </div>
+          </div>
+          <div class="delete"><span></span></div>
+        </div>
+        <span class="borderTop" />
+        <span class="borderBottom" />
+        <span class="borderLeft" />
+        <span class="borderRight" />
+      </div>
+    </div>
     <div class="result">
       <div class="result__result">
         <div class="pos">
@@ -238,6 +275,10 @@ const delivery = ref("1");
     background-position: center;
     background-image: url("/inputPlus.svg");
     background-repeat: no-repeat;
+    &:hover,
+    &:focus {
+      transform: scale(1.3);
+    }
   }
   .minus {
     width: 24px;
@@ -246,6 +287,10 @@ const delivery = ref("1");
     background-position: center;
     background-image: url("/inputMinus.svg");
     background-repeat: no-repeat;
+    &:hover,
+    &:focus {
+      transform: scale(1.3);
+    }
   }
 }
 .item__costRow-btn {
@@ -526,19 +571,19 @@ const delivery = ref("1");
     padding-right: 24px;
   }
   th:nth-child(1) {
-    width: 67%;
+    width: 870px;
   }
   th:nth-child(2) {
-    width: 100px !important;
+    min-width: 100px !important;
   }
   th:nth-child(3) {
-    width: 120px;
+    min-width: 120px;
   }
   th:nth-child(4) {
-    width: 120px;
+    min-width: 120px;
   }
   th:nth-child(5) {
-    width: 50px;
+    min-width: 50px;
     text-align: right !important;
   }
   .tableRow {

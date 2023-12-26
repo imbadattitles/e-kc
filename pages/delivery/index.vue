@@ -67,18 +67,29 @@
   display: flex;
   flex-direction: column;
   gap: 45px;
+  @media (max-width: 1024px) {
+    margin-top: 160px;
+    margin-bottom: 0px;
+    gap: 24px;
+  }
 }
 .section__text {
-  width: 960px;
+  max-width: 960px;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 45px;
+  @media (max-width: 1024px) {
+    gap: 24px;
+  }
 }
 .section__map {
   width: 1160px;
   margin: auto;
+  @media (max-width: 1024px) {
+    width: 100vw;
+  }
 }
 .contacts {
   display: flex;
@@ -92,12 +103,18 @@
   font-weight: 700;
   line-height: 120%; /* 48px */
   letter-spacing: -0.4px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
 }
 .textGroup {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  @media (max-width: 1024px) {
+    gap: 8px;
+  }
 }
 .f16 {
   color: black;
@@ -131,6 +148,9 @@
     line-height: 140%; /* 28px */
     letter-spacing: -0.2px;
   }
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .underline {
   position: relative;
@@ -143,6 +163,9 @@
   position: absolute;
   bottom: -4px;
   left: 0;
+  @media (max-width: 1024px) {
+    bottom: -3px;
+  }
 }
 .blue.underline::after {
   content: "";
@@ -162,6 +185,9 @@
   line-height: 140%; /* 33.6px */
   letter-spacing: -0.24px;
   display: inline;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .circle {
   display: inline-block;
@@ -185,6 +211,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  @media (max-width: 1024px) {
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
 .map {
   width: 100%;
@@ -199,5 +229,8 @@
   align-items: flex-start;
   gap: 16px;
   border-top: 2px solid #dce6ef;
+  @media (max-width: 1024px) {
+    padding-top: 20px;
+  }
 }
 </style>

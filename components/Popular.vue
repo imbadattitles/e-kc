@@ -99,18 +99,32 @@ const categories = [
 <style scoped>
 .section {
   margin-bottom: 100px;
+  @media (max-width: 1024px) {
+    margin-bottom: 40px;
+  }
 }
 .section__title {
   margin-bottom: 48px;
+  @media (max-width: 1024px) {
+    margin-bottom: 24px;
+    padding: 0 15px;
+  }
 }
 .categories {
   display: grid;
   grid-template-columns: repeat(10, auto);
   gap: 16px;
+  @media (max-width: 1024px) {
+    display: flex;
+    width: 100vw;
+    gap: 8px;
+    overflow-y: auto;
+  }
 }
 .categories__item {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 24px;
   text-decoration: none;
   border: 1px solid var(--Line-2, #dce6ef);
@@ -122,6 +136,11 @@ const categories = [
   line-height: 160%; /* 25.6px */
   letter-spacing: -0.16px;
   background: white;
+  @media (max-width: 1024px) {
+    padding: 4px 16px;
+    text-wrap: nowrap;
+    height: 60px;
+  }
   &:hover,
   :focus {
     background: #f2f6fa;
@@ -144,6 +163,9 @@ const categories = [
   &:hover,
   :focus {
     opacity: 0.5;
+  }
+  @media (max-width: 1024px) {
+    padding: 10px;
   }
 }
 .more__icon {

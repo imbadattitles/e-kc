@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
+import useScreenSize from "./size";
 const props = defineProps(["item"]);
+const { isDesktop } = useScreenSize();
 </script>
 
 <template>
-  <div class="item">
+  <div v-if="isDesktop" class="item">
     <img :src="item.img" class="item__img" />
     <div class="item__info">
       <a class="item__title">{{ item.title }}</a>
@@ -37,6 +39,38 @@ const props = defineProps(["item"]);
     <span class="borderLeft" />
     <span class="borderRight" />
   </div>
+
+  <div v-else class="item">
+    <div class="left">
+      <img :src="item.img" class="item__img" />
+      <div class="item__info-right">
+        <span class="analog" />
+        <span class="compare" />
+        <span class="like" />
+      </div>
+    </div>
+    <div class="right">
+      <a class="item__title">{{ item.title }}</a>
+      <div class="group">
+        <div class="over_mobile">
+          <span class="name">Доступно:</span>
+          <span class="line" />
+          <p class="important">{{ item.over }}</p>
+        </div>
+        <div class="over_mobile">
+          <span class="name">Цена:</span>
+          <span class="line" />
+          <p class="important price">{{ item.cost }} ₽</p>
+        </div>
+      </div>
+
+      <MountInput />
+    </div>
+    <span class="borderTop" />
+    <span class="borderBottom" />
+    <span class="borderLeft" />
+    <span class="borderRight" />
+  </div>
 </template>
 <style scoped>
 .item {
@@ -45,6 +79,14 @@ const props = defineProps(["item"]);
   padding: 32px 24px;
   height: 445px;
   position: relative;
+  @media (max-width: 1024px) {
+    height: auto;
+    width: auto;
+    gap: 16px;
+    padding: 16px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 .item__img {
   margin: auto;
@@ -53,6 +95,11 @@ const props = defineProps(["item"]);
   height: 140px;
   object-fit: contain;
   margin-bottom: 32px;
+  @media (max-width: 1024px) {
+    width: 60px;
+    height: 38px;
+    margin-bottom: 0;
+  }
 }
 .item__title {
   display: block;
@@ -68,6 +115,11 @@ const props = defineProps(["item"]);
   &:focus {
     color: #1461b4;
     text-decoration: underline;
+  }
+  @media (max-width: 1024px) {
+    min-width: 160px;
+    font-size: 13px;
+    margin-bottom: 0;
   }
 }
 .item__info-row {
@@ -127,6 +179,10 @@ const props = defineProps(["item"]);
       opacity: 0.7;
     }
   }
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+  }
   .analog {
     background-image: url("/searchResult/analog.svg");
   }
@@ -172,6 +228,9 @@ const props = defineProps(["item"]);
   background: #dce6ef;
   top: -1px;
   left: 0px;
+  @media (max-width: 424px) {
+    display: none;
+  }
 }
 .borderRight {
   position: absolute;
@@ -180,6 +239,9 @@ const props = defineProps(["item"]);
   background: #dce6ef;
   top: -1px;
   right: -1px;
+  @media (max-width: 424px) {
+    display: none;
+  }
 }
 .borderBottom {
   position: absolute;
@@ -188,5 +250,52 @@ const props = defineProps(["item"]);
   background: #dce6ef;
   bottom: -1px;
   left: -1px;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.over_mobile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .name {
+    color: #adbac8;
+
+    text-align: center;
+    /* Lato 13 Bold */
+    font-family: Lato;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+  }
+  .line {
+    flex: 1;
+    height: 1px;
+    border-bottom: 1px dashed #dce6ef;
+  }
+  .important {
+    color: black;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    &.price {
+      font-weight: 700;
+    }
+  }
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import useScreenSize from "./size";
 const description = new Array(24);
 const documents = new Array(4);
 const accordeon = new Array(5);
@@ -7,17 +8,11 @@ const accordeonActive = ref(0);
 const setAccordeon = (index) => {
   accordeonActive.value = index;
 };
+const { isDesktop } = useScreenSize();
 </script>
 <template>
   <section class="section">
-    <div class="section__nav">
-      <p class="section__nav-item active">Описание</p>
-      <p class="section__nav-item">Характеристики</p>
-      <p class="section__nav-item">Условия поставки</p>
-      <p class="section__nav-item">Документы</p>
-      <p class="section__nav-item">Аналоги</p>
-      <p class="section__nav-item">Сопутствующие товары</p>
-    </div>
+    <ProductNav />
     <div class="infoContainer">
       <div class="info__group">
         <h3 class="section__title">
@@ -135,7 +130,7 @@ const setAccordeon = (index) => {
 
       <div class="info__group">
         <h3 class="section__title">Аналоги</h3>
-        <table class="analogs">
+        <table v-if="isDesktop" class="analogs">
           <tr v-for="(item, index) in documents" :key="index">
             <td><img src="/productPage/item.png" class="img" alt="" /></td>
             <td class="title">
@@ -150,11 +145,44 @@ const setAccordeon = (index) => {
             <td class="from">от 1 мес.</td>
           </tr>
         </table>
+        <div v-if="!isDesktop" class="grid">
+          <div v-for="(item, index) in items" :key="index" class="item">
+            <div class="left">
+              <img :src="item.img" class="item__img" />
+              <div class="item__info-right">
+                <span class="analog" />
+                <span class="compare" />
+                <span class="like" />
+              </div>
+            </div>
+            <div class="right">
+              <a class="item__title">{{ item.title }}</a>
+              <div class="group">
+                <div class="over_mobile">
+                  <span class="name">Доступно:</span>
+                  <span class="line" />
+                  <p class="important">{{ item.over }}</p>
+                </div>
+                <div class="over_mobile">
+                  <span class="name">Цена:</span>
+                  <span class="line" />
+                  <p class="important price">{{ item.cost }} ₽</p>
+                </div>
+              </div>
+
+              <MountInput />
+            </div>
+            <span class="borderTop" />
+            <span class="borderBottom" />
+            <span class="borderLeft" />
+            <span class="borderRight" />
+          </div>
+        </div>
       </div>
 
       <div class="info__group">
         <h3 class="section__title">Сопутствующие товары</h3>
-        <table class="analogs">
+        <table v-if="isDesktop" class="analogs">
           <tr v-for="(item, index) in documents" :key="index">
             <td><img src="/productPage/item.png" class="img" alt="" /></td>
             <td class="title">
@@ -169,6 +197,39 @@ const setAccordeon = (index) => {
             <td class="from">от 1 мес.</td>
           </tr>
         </table>
+        <div v-if="!isDesktop" class="grid">
+          <div v-for="(item, index) in items" :key="index" class="item">
+            <div class="left">
+              <img :src="item.img" class="item__img" />
+              <div class="item__info-right">
+                <span class="analog" />
+                <span class="compare" />
+                <span class="like" />
+              </div>
+            </div>
+            <div class="right">
+              <a class="item__title">{{ item.title }}</a>
+              <div class="group">
+                <div class="over_mobile">
+                  <span class="name">Доступно:</span>
+                  <span class="line" />
+                  <p class="important">{{ item.over }}</p>
+                </div>
+                <div class="over_mobile">
+                  <span class="name">Цена:</span>
+                  <span class="line" />
+                  <p class="important price">{{ item.cost }} ₽</p>
+                </div>
+              </div>
+
+              <MountInput />
+            </div>
+            <span class="borderTop" />
+            <span class="borderBottom" />
+            <span class="borderLeft" />
+            <span class="borderRight" />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -228,13 +289,13 @@ const setAccordeon = (index) => {
       }
     }
     .date {
-      width: 74px;
+      min-width: 74px;
     }
     .amount {
-      width: 70px;
+      min-width: 70px;
     }
     .price {
-      width: 110px;
+      min-width: 110px;
     }
     .from {
       text-align: right;
@@ -347,36 +408,7 @@ const setAccordeon = (index) => {
     }
   }
 }
-.section__nav {
-  display: flex;
-  position: sticky;
-  z-index: 10;
-  background: white;
-  top: 57px;
-  gap: 24px;
-  margin-bottom: 56px;
-  border-bottom: 1px solid #e2e2e2;
-  .section__nav-item {
-    cursor: pointer;
-    color: var(--grey);
-    padding-top: 16px;
-    padding-bottom: 16px;
-    font-family: Lato;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 160%; /* 25.6px */
-    letter-spacing: -0.16px;
-    &.active {
-      color: black;
-      border-bottom: 2px solid var(--akcent);
-    }
-    &:hover,
-    &:active {
-      opacity: 0.7;
-    }
-  }
-}
+
 .infoContainer {
   max-width: 1056px;
   display: flex;

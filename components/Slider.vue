@@ -58,6 +58,10 @@ import "swiper/css";
   margin-top: 100px;
   height: 630px;
   background-color: #1774d8;
+  @media (max-width: 1024px) {
+    height: 630px;
+    margin-top: 110px;
+  }
 }
 .slideContainer {
   max-width: 1330px;
@@ -66,7 +70,12 @@ import "swiper/css";
   display: flex;
   flex-direction: column;
   gap: 32px;
-  margin-top: 170px;
+  margin-top: 300px;
+  @media (max-width: 1024px) {
+    gap: 16px;
+    margin-top: 350px;
+    padding: 0 15px;
+  }
 }
 .slideBody {
   color: white;
@@ -77,6 +86,9 @@ import "swiper/css";
   line-height: 140%; /* 33.6px */
   letter-spacing: -0.24px;
   max-width: 620px;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .slideTitle {
   color: white;
@@ -87,6 +99,9 @@ import "swiper/css";
   line-height: 120%; /* 67.2px */
   letter-spacing: -0.56px;
   max-width: 620px;
+  @media (max-width: 1024px) {
+    font-size: 32px;
+  }
 }
 .swiper-pagination {
   display: flex;

@@ -7,6 +7,7 @@
     </div>
     <div class="section__grid">
       <SearchCategories
+        v-if="isDesktop"
         :router="crumbs"
         :categories="categories"
         :next-router="nextRouter"
@@ -26,6 +27,11 @@
   align-items: flex-end;
   gap: 8px;
   margin-bottom: 32px;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
 }
 .amount {
   color: var(--grey);
@@ -35,14 +41,24 @@
   font-weight: 700;
   line-height: 160%; /* 25.6px */
   letter-spacing: -0.16px;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 .section__grid {
   display: grid;
   grid-template-columns: 240px auto;
   gap: 32px;
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 </style>
 <script setup>
+import useScreenSize from "~/components/size";
+
+const { isDesktop } = useScreenSize();
 const crumbs = [
   { title: "Каталог" },
   { title: "Электрооборудование" },

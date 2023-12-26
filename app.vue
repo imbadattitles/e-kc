@@ -1,7 +1,8 @@
 <template>
   <div>
     <NuxtLayout>
-      <Header />
+      <Header v-if="isDesktop" />
+      <HeaderMobile v-if="isMobile" />
       <main>
         <NuxtPage />
       </main>
@@ -9,13 +10,20 @@
     </NuxtLayout>
   </div>
 </template>
+<script setup>
+import useScreenSize from "./components/size";
+
+const { isDesktop, isMobile } = useScreenSize();
+</script>
 <style>
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
+main {
+  overflow-y: hidden;
+}
 @font-face {
   font-family: "Lato";
   src: local("Lato Regular"), local("Lato-Regular"),
@@ -56,6 +64,9 @@
   max-width: 1620px;
   padding: 0 10px;
   margin: auto;
+  @media (max-width: 1024px) {
+    padding: 0;
+  }
 }
 
 .f32 {
@@ -66,6 +77,9 @@
   font-weight: 700;
   line-height: 120%; /* 38.4px */
   letter-spacing: -0.32px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
 }
 :root {
   --grey: #939eaa;

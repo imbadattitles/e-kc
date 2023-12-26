@@ -29,6 +29,9 @@ const inputCLick = () => {
 .item__costRow-change {
   position: relative;
   display: flex;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 }
 .item__costRow-input {
   width: 100px;
@@ -44,6 +47,9 @@ const inputCLick = () => {
   border-top: 1px solid #e2e2e2;
   border-bottom: 1px solid #e2e2e2;
   border-left: 1px solid #e2e2e2;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 }
 .change {
   display: flex;
@@ -52,6 +58,10 @@ const inputCLick = () => {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+  @media (max-width: 1024px) {
+    left: 15px;
+    gap: 20px;
+  }
   .plus {
     width: 24px;
     height: 24px;
@@ -83,7 +93,7 @@ const inputCLick = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 40px;
+  min-width: 40px;
 }
 .item__costRow-btn.blue {
   background: var(--akcent);

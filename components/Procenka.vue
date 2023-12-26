@@ -461,22 +461,22 @@ const items = [1, 2, 3, 4, 5];
   }
 
   th:nth-child(1) {
-    max-width: 56px;
+    min-width: 56px;
   }
   th:nth-child(2) {
     width: 640px !important;
   }
   th:nth-child(3) {
-    width: 80px;
+    min-width: 80px;
   }
   th:nth-child(4) {
-    width: 56px;
+    min-width: 56px;
   }
   th:nth-child(5) {
     width: 340px;
   }
   th:nth-child(6) {
-    width: 56px;
+    min-width: 56px;
   }
   tr:nth-child(2) {
     margin-top: 8px;

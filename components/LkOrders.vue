@@ -92,7 +92,7 @@ const items = [0, 1, 2, 3, 4, 5, 6];
     width: 530px;
   }
   th:nth-child(2) {
-    width: 100px !important;
+    min-width: 100px !important;
     div {
       cursor: pointer;
       display: flex;
@@ -107,19 +107,19 @@ const items = [0, 1, 2, 3, 4, 5, 6];
     }
   }
   th:nth-child(3) {
-    width: 100px;
+    min-width: 100px;
   }
   th:nth-child(4) {
-    width: 100px;
+    min-width: 100px;
   }
   th:nth-child(5) {
-    width: 100px;
+    min-width: 100px;
   }
   th:nth-child(6) {
-    width: 100px;
+    min-width: 70px;
   }
   th:nth-child(7) {
-    width: 150px;
+    min-width: 110px;
   }
   .statusItem {
     display: flex;

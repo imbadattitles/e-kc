@@ -34,12 +34,21 @@ const setSort = (type: "categories" | "brand") => {
 .section {
   margin-top: 135px;
   margin-bottom: 100px;
+  @media (max-width: 1024px) {
+    margin-bottom: 40px;
+  }
 }
 .row {
   display: flex;
   gap: 150px;
   align-items: center;
   margin-bottom: 27px;
+  @media (max-width: 1024px) {
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 0 15px;
+    margin-bottom: 24px;
+  }
 }
 .section__title {
   color: black;

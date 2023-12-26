@@ -3,7 +3,7 @@
     <button class="moreBtn">Показать еще (40)</button>
     <div class="pageRow">
       <p
-        v-for="(page, index) in pages"
+        v-for="(page, index) in isDesktop ? pages : mobPages"
         :class="page === pageActive && 'active'"
         :key="index"
         class="page"
@@ -17,10 +17,13 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import useScreenSize from "./size";
 const pages = [1, 2, 3, 4, 5];
+const mobPages = [1, 2, 3];
 const setPage = (page) => {
   pageActive.value = page;
 };
+const { isDesktop } = useScreenSize();
 const nextPage = () => {
   pageActive.value = pageActive.value + 1;
 };
@@ -30,6 +33,10 @@ const pageActive = ref(1);
 .section {
   margin-top: 24px;
   margin-bottom: 100px;
+  @media (max-width: 1024px) {
+    margin-bottom: 40px;
+    padding: 0 15px;
+  }
 }
 .moreBtn {
   color: black;

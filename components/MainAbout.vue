@@ -102,6 +102,7 @@ const benefits = [
 <style scoped>
 .section {
   padding-top: 60px;
+  padding-top: 40px;
 }
 .firstRow {
   display: flex;
@@ -109,12 +110,24 @@ const benefits = [
   justify-content: space-between;
   gap: 32px;
   margin-bottom: 60px;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
 }
 .h2__block {
   padding: 0 32px;
+  @media (max-width: 1024px) {
+    padding: 0;
+  }
 }
 .h2__block-title {
   margin-bottom: 24px;
+  @media (max-width: 1024px) {
+    margin-bottom: 16px;
+  }
 }
 .h2__block-text {
   color: black;
@@ -125,6 +138,9 @@ const benefits = [
   line-height: 140%; /* 28px */
   letter-spacing: -0.2px;
   max-width: 630px;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .text__block {
   padding: 0 32px;
@@ -136,6 +152,12 @@ const benefits = [
     line-height: 160%; /* 25.6px */
     letter-spacing: -0.16px;
     max-width: 720px;
+    @media (max-width: 1024px) {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 1024px) {
+    padding: 0;
   }
 }
 .videos {
@@ -143,6 +165,14 @@ const benefits = [
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 80px;
+  flex-wrap: wrap;
+  @media (max-width: 1620px) {
+    gap: 50px;
+  }
+  @media (max-width: 1024px) {
+    gap: 24px;
+    margin-bottom: 40px;
+  }
 }
 .video {
   width: 780px;
@@ -152,6 +182,10 @@ const benefits = [
   align-items: center;
   background: #eee;
   margin-bottom: 24px;
+  @media (max-width: 1024px) {
+    width: 100vh !important;
+    margin-bottom: 16px;
+  }
 }
 .play {
   width: 64px;
@@ -167,23 +201,48 @@ const benefits = [
   font-weight: 700;
   line-height: 140%; /* 33.6px */
   letter-spacing: -0.24px;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+    padding-left: 16px;
+  }
 }
 
 .benefits {
   margin-bottom: 80px;
+  @media (max-width: 1024px) {
+    margin-bottom: 40px;
+    padding: 0 15px;
+  }
 }
 .benefits__title {
   margin-bottom: 48px;
+  @media (max-width: 1024px) {
+    margin-bottom: 24px;
+  }
 }
 .benefits__grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 32px;
   justify-content: space-between;
+  @media (max-width: 1024px) {
+    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 524px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 }
 .benefits__item {
   padding: 32px;
   border: 1px solid #dce6ef;
+  @media (max-width: 1024px) {
+    padding: 24px 16px 40px 16px;
+  }
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 }
 .benefits__item-icon {
   width: 48px;
@@ -200,6 +259,9 @@ const benefits = [
   line-height: 140%; /* 28px */
   letter-spacing: -0.2px;
   margin-bottom: 8px;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .benefits__item-body {
   color: var(--grey);

@@ -39,6 +39,7 @@
       </p>
       <a href="/" class="report">Сообщить об ошибке на сайте</a>
     </div>
+    <p class="©btm">© ООО ЭКС™ 2023</p>
   </footer>
 </template>
 <style scoped>
@@ -46,20 +47,52 @@
   padding: 40px 120px 32px 120px;
   background-image: url("/footer/bg.svg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 20px;
+  @media (max-width: 1424px) {
+    padding: 40px 50px 32px 50px;
+    @media (max-width: 1024px) {
+      gap: 32px;
+      padding: 40px 16px;
+    }
+  }
 }
 .logo {
   margin-bottom: 0px;
+  @media (max-width: 1024px) {
+    height: 30px;
+  }
 }
 .column1 {
   display: flex;
   flex-direction: column;
   gap: 24px;
   p {
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    color: black;
+  }
+  @media (max-width: 1024px) {
+    p {
+      font-size: 14px;
+    }
+    .© {
+      display: none;
+    }
+  }
+}
+.©btm {
+  display: none;
+  @media (max-width: 1024px) {
+    display: block;
     font-family: Lato;
     font-size: 14px;
     font-style: normal;
@@ -119,6 +152,9 @@
 .nav {
   display: flex;
   gap: 100px;
+  @media (max-width: 1024px) {
+    gap: 50px;
+  }
 }
 .nav__column {
   display: flex;
@@ -151,6 +187,9 @@
   line-height: 140%;
   max-width: 240px;
   margin-bottom: 25px;
+  @media (max-width: 1024px) {
+    margin-bottom: 8px;
+  }
 }
 .report {
   cursor: pointer;

@@ -2,7 +2,7 @@
   <div class="bg">
     <div class="modal">
       <div class="close" v-on:click="closeModal"></div>
-      <table class="table">
+      <table v-if="isDesktop" class="table">
         <thead class="tableHeader">
           <tr>
             <th>
@@ -49,10 +49,52 @@
           </td>
         </tr>
       </table>
+      <div v-if="!isDesktop" class="grid">
+        <div v-for="(item, index) in items" :key="index" class="item">
+          <div class="left">
+            <img src="/lk/item.png" class="item__img" />
+            <div class="item__info-right">
+              <span class="item__icons_1"></span>
+              <span class="item__icons_2"></span>
+              <span class="item__icons_3"></span>
+              <span class="item__icons_4"></span>
+              <span class="item__icons_5"></span>
+            </div>
+          </div>
+          <div class="right">
+            <a class="item__title"
+              >Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB</a
+            >
+            <div class="group">
+              <div class="over_mobile">
+                <span class="name">Цена: <span class="icon"></span></span>
+                <span class="line" />
+                <p class="important">12 151.22 ₽</p>
+              </div>
+            </div>
+            <MountInput />
+            <div class="group">
+              <div class="over_mobile">
+                <span class="name">Сумма: <span class="icon"></span></span>
+                <span class="line" />
+                <p class="important">74 444 442.22 ₽</p>
+              </div>
+            </div>
+            <div class="delete"><span></span></div>
+          </div>
+          <span class="borderTop" />
+          <span class="borderBottom" />
+          <span class="borderLeft" />
+          <span class="borderRight" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
+import useScreenSize from "./size";
+
+const { isDesktop } = useScreenSize();
 const items = [0, 1, 2, 3, 4, 5];
 const emit = defineEmits(["update:modalVisible"]);
 const closeModal = () => {
@@ -99,7 +141,7 @@ const closeModal = () => {
     padding-right: 24px;
   }
   th:nth-child(1) {
-    width: 60%;
+    width: 600px;
   }
   th:nth-child(2) {
     width: 100px !important;

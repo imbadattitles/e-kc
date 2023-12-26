@@ -97,6 +97,16 @@ const closeModal = () => {
   right: 0;
   bottom: 0;
   z-index: 1000;
+  overflow-y: auto;
+  scrollbar-width: none;
+  height: 100vh;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media (max-width: 1024px) {
+    align-items: flex-start;
+    padding-top: 40px;
+  }
 }
 .modal {
   padding: 64px 40px;
@@ -107,10 +117,9 @@ const closeModal = () => {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
+  @media (max-width: 1024px) {
+    width: 320px;
+    padding: 48px 16px;
   }
 }
 .close {

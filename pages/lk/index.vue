@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import useScreenSize from "~/components/size";
+const { isDesktop } = useScreenSize();
 const mode = ref<"procenka" | "orders">("orders");
 const setMode = (newValue: "procenka" | "orders") => {
   mode.value = newValue;
@@ -41,9 +43,15 @@ const setMode = (newValue: "procenka" | "orders") => {
             <p class="lk__filters_item">Отгружено <span>16</span></p>
           </div>
         </div>
-
-        <Procenka v-if="mode === 'procenka'" />
         <LkOrders v-if="mode === 'orders'" />
+        <Procenka v-if="mode === 'procenka' && isDesktop" />
+        <div v-if="mode === 'procenka' && !isDesktop" class="please">
+          <div class="please__icon"></div>
+          <p class="please__text">
+            Перейдите на полную версию сайта, чтобы оценить функционал страницы
+            «Проценка».
+          </p>
+        </div>
       </div>
     </div>
   </section>

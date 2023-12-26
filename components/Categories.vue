@@ -56,7 +56,9 @@ const catalog = [
       class="categories__item"
     >
       <img :src="item.img" :alt="item.title" class="categories__item-img" />
-      <h3 class="categories__item-title">{{ item.title }}</h3>
+      <div>
+        <h3 class="categories__item-title">{{ item.title }}</h3>
+      </div>
       <span class="borderTop" />
       <span class="borderRight" />
       <span class="borderBottom" />
@@ -70,6 +72,12 @@ const catalog = [
   display: grid;
   justify-content: space-between;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 524px) {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 .categories__item {
   padding: 24px 32px;
@@ -82,6 +90,9 @@ const catalog = [
   &:hover,
   :focus {
     opacity: 0.6;
+  }
+  @media (max-width: 1024px) {
+    padding: 24px 16px;
   }
 }
 .borderTop {
@@ -127,10 +138,14 @@ const catalog = [
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  line-height: 140%; /* 28px */
+  line-height: 140% !important; /* 28px */
   letter-spacing: -0.2px;
   color: black;
-  padding-bottom: 2px;
+  display: inline;
+  padding-bottom: 3px;
   border-bottom: 1px solid #dce6ef;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 </style>

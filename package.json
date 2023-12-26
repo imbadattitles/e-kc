@@ -16,6 +16,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "composition-api": "^0.0.0",
     "nouislider": "^15.7.1",
     "nouislider-vue": "^0.0.6",
     "swiper": "^11.0.5",

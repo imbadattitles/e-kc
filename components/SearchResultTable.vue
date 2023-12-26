@@ -40,7 +40,6 @@
   width: 100%;
   border: 2px solid var(--Line-2, #dce6ef);
   padding-top: 16px;
-
   th {
     text-align: left;
   }
@@ -49,16 +48,25 @@
     padding-left: 24px;
   }
   th:nth-child(1) {
-    max-width: 80px;
+    min-width: 100px;
   }
   th:nth-child(2) {
-    width: 590px !important;
+    width: 590px;
   }
   th:nth-child(3) {
     width: 120px;
   }
+  th:nth-child(4) {
+    min-width: 70px;
+  }
+  th:nth-child(5) {
+    min-width: 80px;
+  }
+  th:nth-child(6) {
+    min-width: 120px;
+  }
   th:nth-child(7) {
-    width: 170px;
+    min-width: 170px;
   }
 
   .tableRow {
