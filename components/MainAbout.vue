@@ -183,7 +183,8 @@ const benefits = [
   background: #eee;
   margin-bottom: 24px;
   @media (max-width: 1024px) {
-    width: 100vh !important;
+    width: 100vw !important;
+    height: calc(100vw / 1.6);
     margin-bottom: 16px;
   }
 }

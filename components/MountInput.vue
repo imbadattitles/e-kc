@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { ref } from "vue";
+const inputStatus = ref<"block" | "edit">("block");
+const inputCLick = () => {
+  inputStatus.value === "block"
+    ? (inputStatus.value = "edit")
+    : (inputStatus.value = "block");
+};
+</script>
 <template>
   <div class="item__costRow-change">
     <div class="item__costRow-input">
@@ -16,15 +25,7 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { ref } from "vue";
-const inputStatus = ref<"block" | "edit">("block");
-const inputCLick = () => {
-  inputStatus.value === "block"
-    ? (inputStatus.value = "edit")
-    : (inputStatus.value = "block");
-};
-</script>
+
 <style scoped>
 .item__costRow-change {
   position: relative;

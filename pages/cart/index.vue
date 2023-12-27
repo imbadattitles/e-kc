@@ -9,9 +9,11 @@ const delivery = ref("1");
   <section class="section">
     <div class="section__top">
       <p class="section__title">Корзина <span>4 товара</span></p>
-      <p class="cart__delete">Удалить все из корзины</p>
+      <p class="cart__delete">
+        {{ isDesktop ? "Удалить все из корзины" : "Удалить все" }}
+      </p>
     </div>
-    <table v-if="isDesktop" class="table">
+    <table class="table">
       <thead class="tableHeader">
         <tr>
           <th>
@@ -57,7 +59,7 @@ const delivery = ref("1");
         </td>
       </tr>
     </table>
-    <div v-if="!isDesktop" class="grid">
+    <div class="grid">
       <div v-for="(item, index) in items" :key="index" class="item">
         <div class="left">
           <img src="/lk/item.png" class="item__img" />
@@ -244,6 +246,175 @@ const delivery = ref("1");
   </section>
 </template>
 <style scoped>
+.grid {
+  display: none;
+  width: 100%;
+  border-right: 2px solid #dce6ef;
+  border-bottom: 2px solid #dce6ef;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 524px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+  .item {
+    position: relative;
+    height: auto;
+    width: auto;
+    gap: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .full {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      gap: 13px;
+    }
+    .item__img {
+      margin: auto;
+      margin-top: 0;
+      width: 60px;
+      height: 38px;
+      margin-bottom: 0;
+      object-fit: cover;
+    }
+    .item__title {
+      display: block;
+      cursor: pointer;
+      color: var(--blue);
+      font-family: Lato;
+      min-width: 160px;
+      font-size: 13px;
+      margin-bottom: 0;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 140%;
+      &:hover,
+      &:focus {
+        color: #1461b4;
+        text-decoration: underline;
+      }
+    }
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .over_mobile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .name {
+        color: #adbac8;
+
+        text-align: center;
+        /* Lato 13 Bold */
+        font-family: Lato;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+      }
+      .line {
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dce6ef;
+      }
+      .important {
+        color: black;
+        font-family: Lato;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+        &.price {
+          font-weight: 700;
+        }
+      }
+    }
+    .borderTop {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: #dce6ef;
+      top: 0px;
+      left: 0px;
+    }
+    .borderLeft {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background: #dce6ef;
+      top: -1px;
+      left: 0px;
+      @media (max-width: 424px) {
+        display: none;
+      }
+    }
+    .borderRight {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background: #dce6ef;
+      top: -1px;
+      right: -1px;
+      @media (max-width: 424px) {
+        display: none;
+      }
+    }
+    .borderBottom {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: #dce6ef;
+      bottom: -1px;
+      left: -1px;
+    }
+  }
+  .item__info-right {
+    display: flex;
+    gap: 16px;
+    span {
+      width: 24px;
+      height: 24px;
+      background-size: contain;
+      cursor: pointer;
+      @media (max-width: 1024px) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .like {
+      background-image: url("/searchResult/like.svg");
+      &.active {
+        background-image: url("/searchResult/likeActive.svg");
+      }
+    }
+  }
+}
 .item__costRow-change {
   position: relative;
   display: flex;
@@ -304,20 +475,32 @@ const delivery = ref("1");
 .result {
   width: 510px;
   margin-left: auto;
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding: 0 15px;
+  }
 }
 .section {
   margin: auto;
   margin-top: 140px;
   margin-bottom: 100px;
   max-width: 1360px;
-
-  padding: 0 15px;
+  padding: 0, 15px;
+  @media (max-width: 1024px) {
+    margin-top: 150px;
+    padding: 0;
+    margin-bottom: 40px;
+  }
 }
 .section__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 32px;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+    margin-bottom: 24px;
+  }
 }
 
 .form {
@@ -337,6 +520,9 @@ const delivery = ref("1");
     flex-direction: column;
     gap: 8px;
     margin-bottom: 24px;
+    @media (max-width: 1024px) {
+      margin-bottom: 8px;
+    }
   }
   .form__input,
   .form__textarea {
@@ -357,6 +543,10 @@ const delivery = ref("1");
     &:focus {
       outline: 2px solid var(--akcent);
     }
+    @media (max-width: 1024px) {
+      font-size: 14px;
+      padding: 16px 16px;
+    }
   }
   .form__textarea {
     resize: none;
@@ -365,6 +555,9 @@ const delivery = ref("1");
   .form__btns {
     display: flex;
     gap: 8px;
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
     button {
       cursor: pointer;
       padding: 11px 24px;
@@ -481,6 +674,9 @@ const delivery = ref("1");
       font-weight: 700;
       line-height: 140%; /* 25.2px */
       letter-spacing: -0.18px;
+      @media (max-width: 1024px) {
+        font-size: 16px;
+      }
     }
   }
   .radio {
@@ -531,6 +727,12 @@ const delivery = ref("1");
     font-size: 16px;
     color: var(--grey);
   }
+  @media (max-width: 1024px) {
+    font-size: 20px;
+    span {
+      font-size: 14px;
+    }
+  }
 }
 .table {
   margin-bottom: 24px;
@@ -538,6 +740,9 @@ const delivery = ref("1");
   border-spacing: none;
   width: 100%;
   border: 2px solid #dce6ef;
+  @media (max-width: 524px) {
+    display: none;
+  }
   th {
     color: var(--grey);
     font-family: Lato;
@@ -654,15 +859,15 @@ const delivery = ref("1");
       text-decoration: underline;
     }
   }
-}
-.like {
-  margin-left: auto;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  background: url("/searchResult/like.svg");
-  &.active {
-    background-image: url("/searchResult/likeActive.svg");
+  .like {
+    margin-left: auto;
+    cursor: pointer;
+    min-width: 20px;
+    height: 20px;
+    background: url("/searchResult/like.svg");
+    &.active {
+      background-image: url("/searchResult/likeActive.svg");
+    }
   }
 }
 
@@ -685,6 +890,9 @@ const delivery = ref("1");
   &:hover,
   &:active {
     background: rgb(245, 231, 231);
+  }
+  @media (max-width: 524px) {
+    width: 100%;
   }
 }
 

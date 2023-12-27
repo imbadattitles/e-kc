@@ -1,3 +1,37 @@
+<script setup>
+import { ref } from "vue";
+import useScreenSize from "./size";
+const activeItem = ref(0);
+const items = [
+  "/productPage/item.png",
+  "/productPage/item.png",
+  "/productPage/item.png",
+  "/productPage/item.png",
+  "/productPage/item.png",
+];
+const itemsMob = [
+  "/productPage/item.png",
+  "/productPage/item.png",
+  "/productPage/item.png",
+];
+const clickItem = (index) => {
+  activeItem.value = index;
+};
+const clickArrow = (arrow) => {
+  if (arrow === "top") {
+    activeItem.value !== 0
+      ? --activeItem.value
+      : (activeItem.value = items.length);
+  }
+  if (arrow === "bottom") {
+    activeItem.value !== items.length - 1
+      ? ++activeItem.value
+      : (activeItem.value = 0);
+  }
+};
+const { isDesktop } = useScreenSize();
+</script>
+
 <template>
   <div class="section__slider">
     <div class="slider">
@@ -111,36 +145,3 @@
   }
 }
 </style>
-<script setup>
-import { ref } from "vue";
-import useScreenSize from "./size";
-const activeItem = ref(0);
-const items = [
-  "/productPage/item.png",
-  "/productPage/item.png",
-  "/productPage/item.png",
-  "/productPage/item.png",
-  "/productPage/item.png",
-];
-const itemsMob = [
-  "/productPage/item.png",
-  "/productPage/item.png",
-  "/productPage/item.png",
-];
-const clickItem = (index) => {
-  activeItem.value = index;
-};
-const clickArrow = (arrow) => {
-  if (arrow === "top") {
-    activeItem.value !== 0
-      ? --activeItem.value
-      : (activeItem.value = items.length);
-  }
-  if (arrow === "bottom") {
-    activeItem.value !== items.length - 1
-      ? ++activeItem.value
-      : (activeItem.value = 0);
-  }
-};
-const { isDesktop } = useScreenSize();
-</script>

@@ -106,8 +106,9 @@
   gap: 45px;
   @media (max-width: 1024px) {
     margin-top: 170px;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
     gap: 24px;
+    padding: 0;
   }
 }
 .section__text {
@@ -119,7 +120,8 @@
   gap: 45px;
   @media (max-width: 1024px) {
     gap: 24px;
-    max-width: 960px;
+    width: 100vw;
+    padding: 0 15px;
   }
 }
 .section__map {

@@ -1,8 +1,55 @@
+<script setup>
+import useScreenSize from "./size";
+
+const emit = defineEmits(["update:modalVisible"]);
+const closeModal = () => {
+  emit("update:modalVisible", false);
+};
+const { isDesktop } = useScreenSize();
+const items = [
+  {
+    img: "/item1.png",
+    title: "Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB",
+    brand: "Brand",
+    over: "5583",
+    cost: "121 486.22",
+  },
+  {
+    img: "/item2.png",
+    title: "Светильник люминесцентный ЛПО-01-2х18-012 ЭПРА - 11218113 Ксенон",
+    brand: "Brand",
+    over: "5583",
+    cost: "121 486.22",
+  },
+  {
+    img: "/item1.png",
+    title: "Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB",
+    brand: "Brand",
+    over: "5583",
+    cost: "121 486.22",
+  },
+];
+const itemsNoPic = [
+  {
+    title: "Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB",
+    brand: "Brand",
+    over: "5583",
+    cost: "121 486.22",
+  },
+  {
+    title: "Светильник люминесцентный ЛПО-01-2х18-012 ЭПРА - 11218113 Ксенон",
+    brand: "Brand",
+    over: "5583",
+    cost: "121 486.22",
+  },
+];
+</script>
+
 <template>
   <div class="bg">
     <div class="modal">
       <div class="close" v-on:click="closeModal"></div>
-      <div class="white">
+      <div v-if="isDesktop" class="white">
         <table class="tablePic">
           <thead class="tableHeader">
             <tr>
@@ -53,10 +100,191 @@
           </tr>
         </table>
       </div>
+      <div v-if="!isDesktop" class="white">
+        <div class="grid">
+          <div v-for="(item, index) in items" :key="index" class="item">
+            <div class="full">
+              <a class="item__title"
+                >Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB</a
+              >
+              <div class="group">
+                <div class="over_mobile">
+                  <span class="name">Дата обновления</span>
+                  <span class="line" />
+                  <p class="important">36 шт.</p>
+                </div>
+                <div class="over_mobile">
+                  <span class="name">Доступно</span>
+                  <span class="line" />
+                  <p class="important">36 шт.</p>
+                </div>
+                <div class="over_mobile">
+                  <span class="name">Срок</span>
+                  <span class="line" />
+                  <p class="important">от 1 дня.</p>
+                </div>
+                <div class="over_mobile">
+                  <span class="name">Цена</span>
+                  <span class="line" />
+                  <p class="important price">121.22 ₽</p>
+                </div>
+              </div>
+              <MountInput />
+            </div>
+            <span class="borderTop" />
+            <span class="borderBottom" />
+            <span class="borderLeft" />
+            <span class="borderRight" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <style scoped>
+.grid {
+  display: grid;
+  width: 100%;
+  border-right: 2px solid #dce6ef;
+  border-bottom: 2px solid #dce6ef;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 524px) {
+      grid-template-columns: 1fr;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+}
+.item {
+  @media (max-width: 1024px) {
+    position: relative;
+    height: auto;
+    width: auto;
+    gap: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .full {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .item__img {
+    margin: auto;
+    margin-top: 0;
+    width: 60px;
+    height: 38px;
+    margin-bottom: 0;
+    object-fit: cover;
+  }
+  .item__title {
+    display: block;
+    cursor: pointer;
+    color: var(--blue);
+    font-family: Lato;
+    min-width: 160px;
+    font-size: 13px;
+    margin-bottom: 0;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    &:hover,
+    &:focus {
+      color: #1461b4;
+      text-decoration: underline;
+    }
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .over_mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .name {
+      color: #adbac8;
+
+      text-align: center;
+      /* Lato 13 Bold */
+      font-family: Lato;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%;
+    }
+    .line {
+      flex: 1;
+      height: 1px;
+      border-bottom: 1px dashed #dce6ef;
+    }
+    .important {
+      color: black;
+      font-family: Lato;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 140%;
+      &.price {
+        font-weight: 700;
+      }
+    }
+  }
+  .borderTop {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #dce6ef;
+    top: 0px;
+    left: 0px;
+  }
+  .borderLeft {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: #dce6ef;
+    top: -1px;
+    left: 0px;
+    @media (max-width: 424px) {
+      display: none;
+    }
+  }
+  .borderRight {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: #dce6ef;
+    top: -1px;
+    right: -1px;
+    @media (max-width: 424px) {
+      display: none;
+    }
+  }
+  .borderBottom {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #dce6ef;
+    bottom: -1px;
+    left: -1px;
+  }
+}
 .white {
   background: white;
 }
@@ -72,6 +300,10 @@
   background: rgba(0, 0, 0, 0.64);
   bottom: 0;
   z-index: 1000;
+  @media (max-width: 1024px) {
+    padding-top: 30px;
+    justify-content: flex-start;
+  }
 }
 .modal {
   position: relative;
@@ -82,6 +314,9 @@
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media (max-width: 1330px) {
+    width: 90vw;
   }
 }
 .close {
@@ -247,46 +482,3 @@
   line-height: 140%;
 }
 </style>
-<script setup>
-const emit = defineEmits(["update:modalVisible"]);
-const closeModal = () => {
-  emit("update:modalVisible", false);
-};
-const items = [
-  {
-    img: "/item1.png",
-    title: "Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB",
-    brand: "Brand",
-    over: "5583",
-    cost: "121 486.22",
-  },
-  {
-    img: "/item2.png",
-    title: "Светильник люминесцентный ЛПО-01-2х18-012 ЭПРА - 11218113 Ксенон",
-    brand: "Brand",
-    over: "5583",
-    cost: "121 486.22",
-  },
-  {
-    img: "/item1.png",
-    title: "Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB",
-    brand: "Brand",
-    over: "5583",
-    cost: "121 486.22",
-  },
-];
-const itemsNoPic = [
-  {
-    title: "Бокс EUROPA в нишу 12М непрозр.дверь серый | 12027 ABB",
-    brand: "Brand",
-    over: "5583",
-    cost: "121 486.22",
-  },
-  {
-    title: "Светильник люминесцентный ЛПО-01-2х18-012 ЭПРА - 11218113 Ксенон",
-    brand: "Brand",
-    over: "5583",
-    cost: "121 486.22",
-  },
-];
-</script>

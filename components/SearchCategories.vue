@@ -1,3 +1,7 @@
+<script setup>
+import { defineProps } from "vue";
+const props = defineProps(["router", "nextRouter", "categories", "popular"]);
+</script>
 <template>
   <div class="column">
     <div class="group">
@@ -111,7 +115,3 @@
   }
 }
 </style>
-<script setup>
-import { defineProps } from "vue";
-const props = defineProps(["router", "nextRouter", "categories", "popular"]);
-</script>

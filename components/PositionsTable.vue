@@ -1,3 +1,13 @@
+<script setup>
+import useScreenSize from "./size";
+
+const { isDesktop } = useScreenSize();
+const items = [0, 1, 2, 3, 4, 5];
+const emit = defineEmits(["update:modalVisible"]);
+const closeModal = () => {
+  emit("update:modalVisible", false);
+};
+</script>
 <template>
   <div class="bg">
     <div class="modal">
@@ -72,7 +82,7 @@
                 <p class="important">12 151.22 ₽</p>
               </div>
             </div>
-            <MountInput />
+            <p class="gridMount">1 шт.</p>
             <div class="group">
               <div class="over_mobile">
                 <span class="name">Сумма: <span class="icon"></span></span>
@@ -91,18 +101,193 @@
     </div>
   </div>
 </template>
-<script setup>
-import useScreenSize from "./size";
-
-const { isDesktop } = useScreenSize();
-const items = [0, 1, 2, 3, 4, 5];
-const emit = defineEmits(["update:modalVisible"]);
-const closeModal = () => {
-  emit("update:modalVisible", false);
-};
-</script>
 
 <style scoped>
+.gridMount {
+  text-align: right;
+  width: 100%;
+  padding: 8px 6px;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  color: black;
+  background: white;
+  border: 1px solid #dce6ef;
+}
+.grid {
+  background: white;
+  display: grid;
+  width: 90vw;
+  border-right: 2px solid #dce6ef;
+  border-bottom: 2px solid #dce6ef;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 624px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+  .item {
+    position: relative;
+    height: auto;
+    width: auto;
+    gap: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .full {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      gap: 13px;
+    }
+    .item__img {
+      margin: auto;
+      margin-top: 0;
+      width: 60px;
+      height: 38px;
+      margin-bottom: 0;
+      object-fit: cover;
+    }
+    .item__title {
+      display: block;
+      cursor: pointer;
+      color: var(--blue);
+      font-family: Lato;
+      min-width: 160px;
+      font-size: 13px;
+      margin-bottom: 0;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 140%;
+      &:hover,
+      &:focus {
+        color: #1461b4;
+        text-decoration: underline;
+      }
+    }
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .right {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .over_mobile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .name {
+        color: #adbac8;
+
+        text-align: center;
+        /* Lato 13 Bold */
+        font-family: Lato;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+      }
+      .line {
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dce6ef;
+      }
+      .important {
+        color: black;
+        font-family: Lato;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 140%;
+        &.price {
+          font-weight: 700;
+        }
+      }
+    }
+    .borderTop {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: #dce6ef;
+      top: 0px;
+      left: 0px;
+    }
+    .borderLeft {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background: #dce6ef;
+      top: -1px;
+      left: 0px;
+      @media (max-width: 424px) {
+        display: none;
+      }
+    }
+    .borderRight {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background: #dce6ef;
+      top: -1px;
+      right: -1px;
+      @media (max-width: 424px) {
+        display: none;
+      }
+    }
+    .borderBottom {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: #dce6ef;
+      bottom: -1px;
+      left: -1px;
+    }
+  }
+  .item__info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    span {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+    }
+    .item__icons_1 {
+      background: url("/lk/procenka1.svg");
+    }
+    .item__icons_2 {
+      background: url("/lk/procenka2.svg");
+    }
+    .item__icons_3 {
+      background: url("/lk/procenka3.svg");
+    }
+    .item__icons_4 {
+      background: url("/lk/procenka4.svg");
+    }
+    .item__icons_5 {
+      background: url("/lk/procenka5.svg");
+    }
+  }
+}
 .table {
   background: white;
   border-spacing: none;
@@ -215,6 +400,10 @@ const closeModal = () => {
   left: 0;
   right: 0;
   bottom: 0;
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+    padding-top: 30px;
+  }
 }
 .modal {
   position: relative;
@@ -225,6 +414,9 @@ const closeModal = () => {
   padding-top: 50px;
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media (max-width: 1330px) {
+    width: 90vw;
   }
 }
 .close {
@@ -315,6 +507,9 @@ const closeModal = () => {
   &:hover,
   &:active {
     background: rgb(245, 231, 231);
+  }
+  @media (max-width: 1024px) {
+    width: 100%;
   }
 }
 </style>

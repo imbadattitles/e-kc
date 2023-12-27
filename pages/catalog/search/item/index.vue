@@ -1,6 +1,5 @@
 <script setup>
 import useScreenSize from "~/components/size";
-
 const crumbs = [
   { title: "Каталог" },
   { title: "Электрооборудование" },

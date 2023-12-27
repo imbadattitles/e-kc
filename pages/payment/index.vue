@@ -76,6 +76,12 @@
   display: flex;
   flex-direction: column;
   gap: 45px;
+  @media (max-width: 1024px) {
+    margin-top: 150px;
+    margin-bottom: 0;
+    gap: 24px;
+    padding: 0;
+  }
 }
 .section__text {
   width: 960px;
@@ -84,10 +90,18 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 45px;
+  @media (max-width: 1024px) {
+    gap: 24px;
+    padding: 0 15px;
+    width: 100vw;
+  }
 }
 .section__map {
   width: 1160px;
   margin: auto;
+  @media (max-width: 1024px) {
+    max-width: 100vw;
+  }
 }
 .contacts {
   display: flex;
@@ -101,12 +115,18 @@
   font-weight: 700;
   line-height: 120%; /* 48px */
   letter-spacing: -0.4px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
 }
 .textGroup {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  @media (max-width: 1024px) {
+    gap: 8px;
+  }
 }
 .f16 {
   color: black;
@@ -143,25 +163,6 @@
   flex-direction: column;
   gap: 10px;
 }
-.contacts__item {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  font-family: Lato;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 140%; /* 28px */
-  letter-spacing: -0.2px;
-  &.phone {
-    font-family: Lato;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%; /* 28px */
-    letter-spacing: -0.2px;
-  }
-}
 .underline {
   position: relative;
 }
@@ -197,6 +198,9 @@
   line-height: 140%; /* 33.6px */
   letter-spacing: -0.24px;
   display: inline;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .circle {
   display: inline-block;
@@ -214,6 +218,9 @@
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 
 .cards {
@@ -221,6 +228,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 }
 .map {
   width: 100%;

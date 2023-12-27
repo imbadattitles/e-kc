@@ -1,3 +1,17 @@
+<script setup>
+import { ref } from "vue";
+import useScreenSize from "./size";
+const pages = [1, 2, 3, 4, 5];
+const mobPages = [1, 2, 3];
+const setPage = (page) => {
+  pageActive.value = page;
+};
+const { isDesktop } = useScreenSize();
+const nextPage = () => {
+  pageActive.value = pageActive.value + 1;
+};
+const pageActive = ref(1);
+</script>
 <template>
   <div class="section">
     <button class="moreBtn">Показать еще (40)</button>
@@ -15,20 +29,7 @@
     </div>
   </div>
 </template>
-<script setup>
-import { ref } from "vue";
-import useScreenSize from "./size";
-const pages = [1, 2, 3, 4, 5];
-const mobPages = [1, 2, 3];
-const setPage = (page) => {
-  pageActive.value = page;
-};
-const { isDesktop } = useScreenSize();
-const nextPage = () => {
-  pageActive.value = pageActive.value + 1;
-};
-const pageActive = ref(1);
-</script>
+
 <style scoped>
 .section {
   margin-top: 24px;

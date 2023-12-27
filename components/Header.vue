@@ -1,9 +1,35 @@
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+const openModal = () => {
+  modalVisible.value = true;
+};
+const openCity = () => {
+  cityVisible.value = true;
+};
+const isScrolling = ref(false);
+const modalVisible = ref(false);
+const cityVisible = ref(false);
+
+const handleScroll = () => {
+  isScrolling.value = window.pageYOffset > 200;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+</script>
+
 <template>
   <Login v-model:modalVisible="modalVisible" v-if="modalVisible" />
+  <CityModal v-model:modalVisible="cityVisible" v-if="cityVisible" />
   <header :class="{ scroll: isScrolling }" class="header">
     <div class="container">
       <div class="header__firstRow">
-        <div class="header__city">
+        <div v-on:click="openCity" class="header__city">
           <span class="marker" />
           <p class="text">Москва</p>
         </div>
@@ -32,7 +58,9 @@
         </div>
       </div>
       <div class="header__secondRow">
-        <a><img src="/header/logo.svg" alt="e-kc.ru" class="logo" /></a>
+        <a href="/"
+          ><img src="/header/logo.svg" alt="e-kc.ru" class="logo"
+        /></a>
         <div class="flexGroup">
           <div class="catalog__btn">
             <span class="catalog__burger" />
@@ -65,26 +93,7 @@
     </div>
   </header>
 </template>
-<script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-const openModal = () => {
-  modalVisible.value = true;
-};
-const isScrolling = ref(false);
-const modalVisible = ref(false);
 
-const handleScroll = () => {
-  isScrolling.value = window.pageYOffset > 200;
-};
-
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-</script>
 <style scoped>
 .header {
   position: fixed;

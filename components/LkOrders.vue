@@ -1,14 +1,17 @@
 <script setup>
+import useScreenSize from "./size";
+
 const modalVisible = ref(false);
 const openModal = () => {
   modalVisible.value = true;
 };
 const items = [0, 1, 2, 3, 4, 5, 6];
+const { isDesktop } = useScreenSize();
 </script>
 
 <template>
   <PositionsTable v-model:modalVisible="modalVisible" v-if="modalVisible" />
-  <table class="table">
+  <table v-if="isDesktop" class="table">
     <thead class="tableHeader">
       <tr>
         <th>№ Заказа</th>
@@ -64,10 +67,329 @@ const items = [0, 1, 2, 3, 4, 5, 6];
       </td>
     </tr>
   </table>
+  <div v-if="!isDesktop" class="grid">
+    <div v-for="(item, index) in items" :key="index" class="item">
+      <div class="full">
+        <div class="item__number">
+          <p>№ 053 566</p>
+          <button v-if="index === 1" class="submit">Отправить</button>
+        </div>
+        <div class="group">
+          <div class="over_mobile">
+            <span class="name">Дата заказа</span>
+            <span class="line" />
+            <p class="important">01.09.2023</p>
+          </div>
+          <div class="over_mobile">
+            <span class="name">Доставка</span>
+            <span class="line" />
+            <p class="important">Самовывоз</p>
+          </div>
+          <div class="over_mobile">
+            <span class="name">Оплата</span>
+            <span class="line" />
+            <p class="important">Оплачен</p>
+          </div>
+          <div class="over_mobile">
+            <span class="name">Статус</span>
+            <span class="line" />
+            <div v-if="index === 1" class="statusItem blue">
+              <span class="statusCircle"></span>
+              <p>Сохранено</p>
+            </div>
+            <div v-else-if="index === 2" class="statusItem green">
+              <span class="statusCircle"></span>
+              <p>Отправлено</p>
+            </div>
+            <div v-else-if="index === 3" class="statusItem grey">
+              <span class="statusCircle"></span>
+              <p>Отгружено</p>
+            </div>
+            <div v-else class="statusItem red">
+              <span class="statusCircle"></span>
+              <p>Выставлен счет</p>
+            </div>
+          </div>
+          <div class="over_mobile">
+            <span class="name">Сумма</span>
+            <span class="line" />
+            <p class="important price">от 121.22 ₽</p>
+          </div>
+        </div>
+        <div class="positionsRow">
+          <p>144 позиции</p>
+          <div v-on:click="openModal" class="positionsRow__btn">
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <span class="borderTop" />
+      <span class="borderBottom" />
+      <span class="borderLeft" />
+      <span class="borderRight" />
+    </div>
+  </div>
   <More />
 </template>
 
 <style scoped>
+.submit {
+  padding: 10px 12px;
+  color: white;
+  cursor: pointer;
+  border: none;
+  background: var(--akcent);
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  &:hover,
+  &:focus {
+    background: #1461b4;
+  }
+}
+.positionsRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  p {
+    color: black;
+    font-family: Lato;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+  }
+  .positionsRow__btn {
+    cursor: pointer;
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #dce6ef;
+    background: #fff;
+    span {
+      width: 24px;
+      height: 24px;
+      background: url("/lk/positionsRow__btn.svg");
+    }
+    &:hover,
+    &:focus {
+      background: #edf1f5;
+    }
+  }
+}
+.statusItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 5px;
+  .statusCircle {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  p {
+    margin-top: -5px;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+  }
+  &.blue {
+    .statusCircle {
+      background: var(--akcent);
+    }
+    p {
+      color: var(--akcent);
+    }
+  }
+  &.red {
+    .statusCircle {
+      background: var(--red);
+    }
+    p {
+      color: var(--red);
+    }
+  }
+  &.green {
+    .statusCircle {
+      background: var(--green);
+    }
+    p {
+      color: var(--green);
+    }
+  }
+  &.grey {
+    .statusCircle {
+      background: #999999;
+    }
+    p {
+      color: #999999;
+    }
+  }
+}
+.grid {
+  margin-top: 16px;
+  display: grid;
+  width: 100%;
+  border-right: 2px solid #dce6ef;
+  border-bottom: 2px solid #dce6ef;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 524px) {
+      grid-template-columns: 1fr;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+}
+.item {
+  @media (max-width: 1024px) {
+    position: relative;
+    height: auto;
+    width: auto;
+    gap: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .item__number {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-family: Lato;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%;
+    }
+  }
+  .full {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .item__img {
+    margin: auto;
+    margin-top: 0;
+    width: 60px;
+    height: 38px;
+    margin-bottom: 0;
+    object-fit: cover;
+  }
+  .item__title {
+    display: block;
+    cursor: pointer;
+    color: var(--blue);
+    font-family: Lato;
+    min-width: 160px;
+    font-size: 13px;
+    margin-bottom: 0;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    &:hover,
+    &:focus {
+      color: #1461b4;
+      text-decoration: underline;
+    }
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .over_mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .name {
+      color: #adbac8;
+
+      text-align: center;
+      /* Lato 13 Bold */
+      font-family: Lato;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%;
+    }
+    .line {
+      flex: 1;
+      height: 1px;
+      border-bottom: 1px dashed #dce6ef;
+    }
+    .important {
+      color: black;
+      font-family: Lato;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 140%;
+      &.price {
+        font-weight: 700;
+      }
+    }
+  }
+  .borderTop {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #dce6ef;
+    top: 0px;
+    left: 0px;
+  }
+  .borderLeft {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: #dce6ef;
+    top: -1px;
+    left: 0px;
+    @media (max-width: 424px) {
+      display: none;
+    }
+  }
+  .borderRight {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: #dce6ef;
+    top: -1px;
+    right: -1px;
+    @media (max-width: 424px) {
+      display: none;
+    }
+  }
+  .borderBottom {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #dce6ef;
+    bottom: -1px;
+    left: -1px;
+  }
+}
 .table {
   margin-top: 20px;
   border-spacing: none;
@@ -202,22 +524,7 @@ const items = [0, 1, 2, 3, 4, 5, 6];
   .cost {
     font-weight: 700 !important;
   }
-  .submit {
-    padding: 10px 12px;
-    color: white;
-    cursor: pointer;
-    border: none;
-    background: var(--akcent);
-    font-family: Lato;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    &:hover,
-    &:focus {
-      background: #1461b4;
-    }
-  }
+
   .tableRow {
     td {
       vertical-align: middle;
@@ -229,39 +536,6 @@ const items = [0, 1, 2, 3, 4, 5, 6];
   .tableRow:last-child {
     td {
       border: none;
-    }
-  }
-  .positionsRow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: flex-end;
-    p {
-      color: black;
-      font-family: Lato;
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 140%;
-    }
-    .positionsRow__btn {
-      cursor: pointer;
-      display: flex;
-      padding: 8px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid #dce6ef;
-      background: #fff;
-      span {
-        width: 24px;
-        height: 24px;
-        background: url("/lk/positionsRow__btn.svg");
-      }
-      &:hover,
-      &:focus {
-        background: #edf1f5;
-      }
     }
   }
 

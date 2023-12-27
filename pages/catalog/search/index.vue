@@ -1,3 +1,43 @@
+<script setup>
+import useScreenSize from "~/components/size";
+
+const { isDesktop } = useScreenSize();
+const crumbs = [
+  { title: "Каталог" },
+  { title: "Электрооборудование" },
+  { title: "Системы авторизации" },
+  { title: "Оборудование для информационной шины" },
+];
+const nextRouter = [
+  {
+    title: "Светотехника",
+  },
+  {
+    title: "Электроустановочные изделия",
+  },
+  {
+    title: "Светотехника",
+  },
+  {
+    title: "Электроустановочные изделия",
+  },
+  {
+    title: "Светотехника",
+  },
+  {
+    title: "Электроустановочные изделия",
+  },
+  {
+    title: "Светотехника",
+  },
+  {
+    title: "Электроустановочные изделия",
+  },
+];
+const categories = nextRouter;
+const popular = nextRouter;
+</script>
+
 <template>
   <section class="section container">
     <BreadCrumbs :router="crumbs" />
@@ -55,42 +95,3 @@
   }
 }
 </style>
-<script setup>
-import useScreenSize from "~/components/size";
-
-const { isDesktop } = useScreenSize();
-const crumbs = [
-  { title: "Каталог" },
-  { title: "Электрооборудование" },
-  { title: "Системы авторизации" },
-  { title: "Оборудование для информационной шины" },
-];
-const nextRouter = [
-  {
-    title: "Светотехника",
-  },
-  {
-    title: "Электроустановочные изделия",
-  },
-  {
-    title: "Светотехника",
-  },
-  {
-    title: "Электроустановочные изделия",
-  },
-  {
-    title: "Светотехника",
-  },
-  {
-    title: "Электроустановочные изделия",
-  },
-  {
-    title: "Светотехника",
-  },
-  {
-    title: "Электроустановочные изделия",
-  },
-];
-const categories = nextRouter;
-const popular = nextRouter;
-</script>

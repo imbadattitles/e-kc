@@ -115,10 +115,15 @@ const categories = [
   grid-template-columns: repeat(10, auto);
   gap: 16px;
   @media (max-width: 1024px) {
+    padding: 0 15px;
     display: flex;
-    width: 100vw;
+    max-width: 100vw;
     gap: 8px;
-    overflow-y: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 .categories__item {
@@ -165,6 +170,7 @@ const categories = [
     opacity: 0.5;
   }
   @media (max-width: 1024px) {
+    display: none;
     padding: 10px;
   }
 }

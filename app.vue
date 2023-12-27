@@ -12,7 +12,6 @@
 </template>
 <script setup>
 import useScreenSize from "./components/size";
-
 const { isDesktop, isMobile } = useScreenSize();
 </script>
 <style>
@@ -23,43 +22,9 @@ const { isDesktop, isMobile } = useScreenSize();
 }
 main {
   overflow-y: hidden;
+  min-height: 80vh;
 }
-@font-face {
-  font-family: "Lato";
-  src: local("Lato Regular"), local("Lato-Regular"),
-    url("/fonts/latoregular.woff2") format("woff2"),
-    url("/fonts/latoregular.woff") format("woff"),
-    url("/fonts/latoregular.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Lato";
-  src: local("Lato Bold"), local("Lato-Bold"),
-    url("/fonts/latobold.woff2") format("woff2"),
-    url("/fonts/latobold.woff") format("woff"),
-    url("/fonts/latobold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Lato";
-  src: local("Lato Bold"), local("Lato-Bold"),
-    url("/fonts/latomedium.woff2") format("woff2"),
-    url("/fonts/latomedium.woff") format("woff"),
-    url("/fonts/latomedium.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Lato";
-  src: local("Lato Light"), local("Lato-Light"),
-    url("/fonts/latolight.woff2") format("woff2"),
-    url("/fonts/latolight.woff") format("woff"),
-    url("/fonts/latolight.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
+
 .container {
   max-width: 1620px;
   padding: 0 10px;
@@ -98,5 +63,42 @@ input[type="search"]::-webkit-search-decoration {
 /* Добавляем свойство для кроссбраузерности */
 input[type="search"]::-ms-clear {
   display: none;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: local("Lato Regular"), local("Lato-Regular"),
+    url("/fonts/latoregular.woff2") format("woff2"),
+    url("/fonts/latoregular.woff") format("woff"),
+    url("/fonts/latoregular.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: local("Lato Bold"), local("Lato-Bold"),
+    url("/fonts/latobold.woff2") format("woff2"),
+    url("/fonts/latobold.woff") format("woff"),
+    url("/fonts/latobold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: local("Lato Bold"), local("Lato-Bold"),
+    url("/fonts/latomedium.woff2") format("woff2"),
+    url("/fonts/latomedium.woff") format("woff"),
+    url("/fonts/latomedium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: local("Lato Light"), local("Lato-Light"),
+    url("/fonts/latolight.woff2") format("woff2"),
+    url("/fonts/latolight.woff") format("woff"),
+    url("/fonts/latolight.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 </style>

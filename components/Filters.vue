@@ -1,3 +1,21 @@
+<script>
+import "nouislider/dist/nouislider.css";
+import noUiSlider from "nouislider";
+
+export default {
+  mounted() {
+    const slider = document.getElementById("slider");
+    noUiSlider.create(slider, {
+      start: [20, 80],
+      connect: true,
+      range: {
+        min: 0,
+        max: 100,
+      },
+    });
+  },
+};
+</script>
 <template>
   <div class="bg">
     <div class="modal">
@@ -348,21 +366,3 @@
   }
 }
 </style>
-<script>
-import "nouislider/dist/nouislider.css";
-import noUiSlider from "nouislider";
-
-export default {
-  mounted() {
-    const slider = document.getElementById("slider");
-    noUiSlider.create(slider, {
-      start: [20, 80],
-      connect: true,
-      range: {
-        min: 0,
-        max: 100,
-      },
-    });
-  },
-};
-</script>

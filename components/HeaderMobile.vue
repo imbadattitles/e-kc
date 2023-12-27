@@ -1,5 +1,33 @@
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+const openModal = () => {
+  modalVisible.value = true;
+};
+const modalVisible = ref(false);
+const menuVisible = ref(false);
+const clickHeader = () => {
+  menuVisible.value = !menuVisible.value;
+};
+const catalogVisible = ref(false);
+const clickCatalog = () => {
+  catalogVisible.value = !catalogVisible.value;
+};
+
+const isScrolling = ref(false);
+const handleScroll = () => {
+  isScrolling.value = window.pageYOffset > 200;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+</script>
 <template>
-  <header class="header">
+  <header :class="{ scroll: isScrolling }" class="header">
     <div class="row">
       <div
         v-on:click="clickHeader"
@@ -112,7 +140,14 @@
   z-index: 10;
   background: linear-gradient(180deg, #00acce 0%, #0062cb 100%);
   padding: 16px 16px 0px 16px;
+  overflow: hidden;
+  height: 112px;
+  transition: 1s !important;
+  &.scroll {
+    height: 60px;
+  }
 }
+
 .row {
   display: flex;
   align-items: center;
@@ -272,18 +307,3 @@
   }
 }
 </style>
-<script setup>
-import { ref } from "vue";
-const openModal = () => {
-  modalVisible.value = true;
-};
-const modalVisible = ref(false);
-const menuVisible = ref(false);
-const clickHeader = () => {
-  menuVisible.value = !menuVisible.value;
-};
-const catalogVisible = ref(false);
-const clickCatalog = () => {
-  catalogVisible.value = !catalogVisible.value;
-};
-</script>

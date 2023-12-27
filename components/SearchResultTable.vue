@@ -1,3 +1,7 @@
+<script setup>
+import { defineProps } from "vue";
+const props = defineProps(["items"]);
+</script>
 <template>
   <table class="table">
     <thead class="tableHeader">
@@ -178,8 +182,3 @@
   line-height: 140%;
 }
 </style>
-
-<script setup>
-import { defineProps } from "vue";
-const props = defineProps(["items"]);
-</script>

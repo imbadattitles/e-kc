@@ -68,6 +68,7 @@
   flex-direction: column;
   gap: 45px;
   @media (max-width: 1024px) {
+    padding: 0;
     margin-top: 160px;
     margin-bottom: 0px;
     gap: 24px;
@@ -82,6 +83,7 @@
   gap: 45px;
   @media (max-width: 1024px) {
     gap: 24px;
+    padding: 0 15px;
   }
 }
 .section__map {

@@ -35,13 +35,27 @@ const setMode = (newValue: "procenka" | "orders") => {
               Проценка
             </button>
           </div>
-          <div v-if="mode === 'orders'" class="lk__filters">
+          <div v-if="mode === 'orders' && isDesktop" class="lk__filters">
             <p class="lk__filters_item active">Все <span>221</span></p>
             <p class="lk__filters_item">Отправлено <span>16</span></p>
             <p class="lk__filters_item">Сохранено <span>16</span></p>
             <p class="lk__filters_item">Выставлен счет <span>16</span></p>
             <p class="lk__filters_item">Отгружено <span>16</span></p>
           </div>
+          <select v-if="!isDesktop" class="filters__mob">
+            <option value="" class="filters__mob-item">
+              Все <span>221</span>
+            </option>
+            <option value="" class="filters__mob-item">
+              Все <span>221</span>
+            </option>
+            <option value="" class="filters__mob-item">
+              Все <span>221</span>
+            </option>
+            <option value="" class="filters__mob-item">
+              Все <span>221</span>
+            </option>
+          </select>
         </div>
         <LkOrders v-if="mode === 'orders'" />
         <Procenka v-if="mode === 'procenka' && isDesktop" />
@@ -58,15 +72,40 @@ const setMode = (newValue: "procenka" | "orders") => {
 </template>
 
 <style scoped>
+.please {
+  padding: 0 15px;
+}
+.please__icon {
+  width: 64px;
+  height: 64px;
+  background-image: url("/lk/please__icon.svg");
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+.please__text {
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
+  letter-spacing: -0.16px;
+}
 .section {
   margin-top: 140px;
   margin-bottom: 100px;
+  @media (max-width: 1024px) {
+    margin-bottom: 40px;
+    margin-top: 150px;
+  }
 }
 .section__title {
   margin-bottom: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+  }
   h1 {
     color: black;
     font-family: Lato;
@@ -75,6 +114,9 @@ const setMode = (newValue: "procenka" | "orders") => {
     font-weight: 700;
     line-height: 120%; /* 38.4px */
     letter-spacing: -0.32px;
+    @media (max-width: 1024px) {
+      font-size: 20px;
+    }
   }
   .logOut {
     display: flex;
@@ -97,11 +139,21 @@ const setMode = (newValue: "procenka" | "orders") => {
   display: grid;
   gap: 32px;
   grid-template-columns: 240px auto;
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .lk__main-top {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 .lk__switch {
   display: flex;
@@ -132,8 +184,28 @@ const setMode = (newValue: "procenka" | "orders") => {
     }
   }
 }
+.filters__mob {
+  display: block;
+  width: 100%;
+  color: black;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%; /* 25.6px */
+  letter-spacing: -0.16px;
+  padding: 11px 16px;
+  outline: none;
+  border: 1px solid var(--Line-2, #dce6ef);
+  span {
+    color: var(--grey);
+  }
+}
 .lk__filters {
   display: flex;
+  @media (max-width: 524px) {
+    display: none;
+  }
   .lk__filters_item {
     padding: 11px 16px;
     background: white;

@@ -1,3 +1,8 @@
+<script setup>
+import { defineProps } from "vue";
+const props = defineProps(["items"]);
+</script>
+
 <template>
   <div class="grid">
     <SearchGridItem v-for="(item, index) in items" :key="index" :item="item" />
@@ -12,6 +17,9 @@
   border: 1px solid #dce6ef;
   border-right: 2px solid #dce6ef;
   border-bottom: 2px solid #dce6ef;
+  @media (max-width: 1324px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   @media (max-width: 1024px) {
     grid-template-columns: 1fr 1fr;
     @media (max-width: 524px) {
@@ -22,7 +30,3 @@
   }
 }
 </style>
-<script setup>
-import { defineProps } from "vue";
-const props = defineProps(["items"]);
-</script>

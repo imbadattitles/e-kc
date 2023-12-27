@@ -12,6 +12,11 @@
   </div>
 </template>
 <style scoped>
+.lk__user {
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+  }
+}
 .FIO {
   margin-bottom: 16px;
   color: black;
@@ -21,10 +26,14 @@
   font-weight: 700;
   line-height: 160%; /* 28.8px */
   letter-spacing: -0.18px;
+  @media (max-width: 524px) {
+    font-size: 16px;
+  }
 }
 .lk__contacts {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 4px;
   margin-bottom: 24px;
   color: black;
@@ -35,6 +44,8 @@
   line-height: 140%;
   .mail {
     color: var(--blue);
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(0, 90, 188, 0.24);
   }
 }
 .lk__requisites {
