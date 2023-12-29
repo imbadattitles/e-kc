@@ -1,5 +1,5 @@
 <script>
-import "nouislider/dist/nouislider.css";
+import "~/assets/css/uislider.css";
 import noUiSlider from "nouislider";
 
 export default {
