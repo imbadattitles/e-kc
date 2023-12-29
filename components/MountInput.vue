@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const inputStatus = ref<"block" | "edit">("block");
-const inputCLick = () => {
-  inputStatus.value === "block"
-    ? (inputStatus.value = "edit")
-    : (inputStatus.value = "block");
+const addCart = () => {
+  inCart.value = true;
 };
 const modalOpen = () => {
   modalVisible.value = true;
@@ -16,6 +14,12 @@ const props = defineProps({
   },
 });
 const modalVisible = ref(false);
+const inCart = ref(false);
+const edIzm = "шт.";
+const EdVisible = ref(true);
+const focus = () => {
+  EdVisible.value = false;
+};
 </script>
 <template>
   <Modal
@@ -23,28 +27,32 @@ const modalVisible = ref(false);
     v-model:modalVisible="modalVisible"
   />
   <div class="item__costRow-change">
-    <input
-      value="1 шт"
-      :disabled="inputStatus === 'block'"
-      class="item__costRow-input"
-    />
-    <div v-if="inputStatus === 'edit'" class="change">
-      <div class="minus"></div>
-      <div class="plus"></div>
+    <div class="item__costRow-input">
+      <input
+        value="1"
+        @focus="EdVisible = false"
+        @blur="EdVisible = true"
+        :disabled="!inCart"
+      />
+      <div v-if="EdVisible" class="colWo">шт.</div>
+      <div v-if="inCart" class="change">
+        <div class="minus"></div>
+        <div class="plus"></div>
+      </div>
     </div>
+
     <div
       v-if="props.type === 'counter'"
-      v-on:click="inputCLick"
-      :class="inputStatus === 'block' ? 'blue' : 'red'"
+      v-on:click="addCart"
+      :class="!inCart ? 'blue' : 'red'"
       class="item__costRow-btn"
     >
-      <span :class="inputStatus === 'block' ? 'iconPlus' : 'iconOk'" />
+      <span :class="!inCart ? 'iconPlus' : 'iconOk'" />
     </div>
     <div
       v-if="props.type === 'modal'"
       v-on:click="modalOpen"
-      :class="inputStatus === 'block' ? 'blue' : 'red'"
-      class="item__costRow-btn"
+      class="item__costRow-btn blue"
     >
       <span class="iconArrow" />
     </div>
@@ -61,17 +69,15 @@ const modalVisible = ref(false);
 }
 .item__costRow-input {
   outline: none;
+  position: relative;
   background: white;
   border-right: none;
   width: 100px;
-  color: var(--Black, #000);
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
   /* Lato 13 Reg */
   font-family: Lato;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 140%;
   padding: 11px 8px;
   border-top: 1px solid #e2e2e2;
   border-bottom: 1px solid #e2e2e2;
@@ -79,11 +85,31 @@ const modalVisible = ref(false);
   @media (max-width: 1024px) {
     width: 100%;
   }
+  input {
+    outline: none;
+    border: none;
+    width: 100%;
+    color: var(--Black, #000);
+    text-align: right;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+  }
+  .colWo {
+    color: var(--Black, #000);
+    text-align: right;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+  }
 }
 .change {
   display: flex;
   align-items: center;
   position: absolute;
+  z-index: 2;
   top: 50%;
   left: 0;
   transform: translateY(-50%);

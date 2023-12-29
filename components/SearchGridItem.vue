@@ -63,7 +63,6 @@ const { isDesktop } = useScreenSize();
           <p class="important price">{{ item.cost }} ₽</p>
         </div>
       </div>
-
       <MountInput :type="item?.modal" />
     </div>
     <span class="borderTop" />
