@@ -64,7 +64,7 @@ const { isDesktop } = useScreenSize();
         </div>
       </div>
 
-      <MountInput />
+      <MountInput :type="item?.modal" />
     </div>
     <span class="borderTop" />
     <span class="borderBottom" />

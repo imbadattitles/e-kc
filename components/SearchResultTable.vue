@@ -34,7 +34,7 @@ const props = defineProps(["items"]);
       </th>
       <th class="over">{{ item.over }}</th>
       <th class="cost">{{ item.cost }}</th>
-      <th><MountInput /></th>
+      <th><MountInput :type="item?.modal" /></th>
     </tr>
   </table>
 </template>
