@@ -6,22 +6,47 @@ const inputCLick = () => {
     ? (inputStatus.value = "edit")
     : (inputStatus.value = "block");
 };
+const modalOpen = () => {
+  modalVisible.value = true;
+};
+const props = defineProps({
+  type: {
+    type: String,
+    default: "counter",
+  },
+});
+const modalVisible = ref(false);
 </script>
 <template>
+  <Modal
+    v-if="props.type === 'modal' && modalVisible"
+    v-model:modalVisible="modalVisible"
+  />
   <div class="item__costRow-change">
-    <div class="item__costRow-input">
-      <div v-if="inputStatus === 'edit'" class="change">
-        <div class="minus"></div>
-        <div class="plus"></div>
-      </div>
-      0 шт
+    <input
+      value="1 шт"
+      :disabled="inputStatus === 'block'"
+      class="item__costRow-input"
+    />
+    <div v-if="inputStatus === 'edit'" class="change">
+      <div class="minus"></div>
+      <div class="plus"></div>
     </div>
     <div
+      v-if="props.type === 'counter'"
       v-on:click="inputCLick"
       :class="inputStatus === 'block' ? 'blue' : 'red'"
       class="item__costRow-btn"
     >
       <span :class="inputStatus === 'block' ? 'iconPlus' : 'iconOk'" />
+    </div>
+    <div
+      v-if="props.type === 'modal'"
+      v-on:click="modalOpen"
+      :class="inputStatus === 'block' ? 'blue' : 'red'"
+      class="item__costRow-btn"
+    >
+      <span class="iconArrow" />
     </div>
   </div>
 </template>
@@ -35,6 +60,9 @@ const inputCLick = () => {
   }
 }
 .item__costRow-input {
+  outline: none;
+  background: white;
+  border-right: none;
   width: 100px;
   color: var(--Black, #000);
   text-align: right;
@@ -119,5 +147,10 @@ const inputCLick = () => {
   width: 24px;
   height: 24px;
   background-image: url("/searchResult/ok.svg");
+}
+.iconArrow {
+  width: 24px;
+  height: 24px;
+  background-image: url("/searchResult/iconArrow.svg");
 }
 </style>

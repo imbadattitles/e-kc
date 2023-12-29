@@ -20,6 +20,7 @@ const items = [
     brand: "Brand",
     over: "5583",
     cost: "121 486.22",
+    modal: true,
   },
   {
     img: "/item2.png",

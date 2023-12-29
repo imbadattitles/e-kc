@@ -32,7 +32,7 @@ const { isDesktop } = useScreenSize();
     </div>
     <div class="item__costRow">
       <p class="item__costRow-cost">{{ item.cost }} ₽</p>
-      <MountInput />
+      <MountInput :type="item?.modal && 'modal'" />
     </div>
     <span class="borderTop" />
     <span class="borderBottom" />
