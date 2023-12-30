@@ -133,7 +133,7 @@ onUnmounted(() => {
     font-family: Lato;
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 140%;
     position: relative;
     &::after {
@@ -286,7 +286,7 @@ onUnmounted(() => {
     font-family: Lato;
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 140%;
   }
 

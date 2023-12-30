@@ -1,10 +1,14 @@
 <script setup>
 import { defineProps } from "vue";
 import { ref } from "vue";
+import useScreenSize from "./size";
 const props = defineProps(["router"]);
+const { isDesktop } = useScreenSize();
 const nowOpen = ref(null);
 const open = (index) => {
-  nowOpen.value !== index ? (nowOpen.value = index) : (nowOpen.value = null);
+  !isDesktop && nowOpen.value !== index
+    ? (nowOpen.value = index)
+    : (nowOpen.value = null);
 };
 </script>
 <template>
@@ -39,7 +43,7 @@ const open = (index) => {
 <style scoped>
 .BreadCrumbs {
   position: relative;
-  z-index: 2;
+  z-index: 7;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -59,6 +63,20 @@ const open = (index) => {
   font-weight: 500;
   line-height: 140%;
   color: black;
+  padding-bottom: 15px;
+  margin-bottom: -15px;
+  &:hover {
+    .breadCrumbs__open {
+      display: block;
+    }
+    &:hover,
+    :focus {
+      .title,
+      .BreadCrumbs__icon {
+        opacity: 0.6;
+      }
+    }
+  }
   @media (max-width: 1024px) {
     position: static;
   }
@@ -70,10 +88,6 @@ const open = (index) => {
     font-weight: 500;
     line-height: 140%;
     color: black;
-    &:hover,
-    :focus {
-      opacity: 0.6;
-    }
   }
 }
 .breadCrumbs__open {
@@ -92,10 +106,12 @@ const open = (index) => {
     display: flex;
   }
   @media (max-width: 1024px) {
+    width: 280px;
     top: 100%;
     left: 15px;
   }
   .item {
+    display: block;
     color: black;
     font-family: Lato;
     font-size: 14px;
@@ -115,10 +131,5 @@ const open = (index) => {
   width: 16px;
   height: 16px;
   background-image: url("/header/breadCrumbsArrow.svg");
-  &:hover,
-  :focus {
-    opacity: 0.6;
-    transform: scale(1.5);
-  }
 }
 </style>

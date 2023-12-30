@@ -16,25 +16,25 @@ const props = defineProps(["items"]);
       </tr>
     </thead>
     <tr v-for="(item, index) in items" :key="index" class="tableRow">
-      <th>
+      <td>
         <img class="img" :src="item.img" alt="" />
-      </th>
-      <th class="item__title">
+      </td>
+      <td class="item__title">
         <a href="/">{{ item.title }}</a>
-      </th>
-      <th>
+      </td>
+      <td>
         <div class="item__icons">
           <span class="analog" />
           <span class="compare" />
           <span class="like" :class="index === 1 && 'active'" />
         </div>
-      </th>
-      <th>
+      </td>
+      <td>
         <a href="/" class="brand">{{ item.brand }}</a>
-      </th>
-      <th class="over">{{ item.over }}</th>
-      <th class="cost">{{ item.cost }}</th>
-      <th><MountInput :type="item?.modal" /></th>
+      </td>
+      <td class="over">{{ item.over }}</td>
+      <td class="cost">{{ item.cost }}</td>
+      <td><MountInput :type="item?.modal && 'modal'" /></td>
     </tr>
   </table>
 </template>
@@ -48,40 +48,41 @@ const props = defineProps(["items"]);
     text-align: left;
   }
 
-  th:first-child {
+  th:first-child,
+  td:first-child {
     padding-left: 24px;
   }
-  th:nth-child(1) {
+  td:nth-child(1) {
     min-width: 100px;
   }
-  th:nth-child(2) {
+  td:nth-child(2) {
     width: 590px;
   }
-  th:nth-child(3) {
+  td:nth-child(3) {
     width: 120px;
   }
-  th:nth-child(4) {
+  td:nth-child(4) {
     min-width: 70px;
   }
-  th:nth-child(5) {
+  td:nth-child(5) {
     min-width: 80px;
   }
-  th:nth-child(6) {
+  td:nth-child(6) {
     min-width: 120px;
   }
-  th:nth-child(7) {
+  td:nth-child(7) {
     min-width: 170px;
   }
 
   .tableRow {
-    th {
+    td {
       vertical-align: middle;
       padding-top: 16px;
       padding-bottom: 16px;
       border-bottom: 1px solid #dce6ef;
     }
     &:last-child {
-      th {
+      td {
         border: none;
       }
     }

@@ -107,7 +107,7 @@ const props = defineProps(["router", "nextRouter", "categories", "popular"]);
   font-weight: 600;
   line-height: 140%;
   padding-bottom: 2px;
-  border-bottom: 1px dotted var(--blue);
+  border-bottom: 1px dashed var(--blue);
   margin-bottom: 10px;
   &:hover,
   :focus {

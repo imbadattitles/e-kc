@@ -277,4 +277,5 @@
   height: 15px !important;
   border: none !important;
   background: url("/handle.svg") !important;
+  transform: translate(-8px);
 }

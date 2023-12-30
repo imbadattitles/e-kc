@@ -1,6 +1,7 @@
 <script>
 import "~/assets/css/uislider.css";
 import noUiSlider from "nouislider";
+import useScreenSize from "./size";
 
 export default {
   mounted() {
@@ -14,10 +15,17 @@ export default {
       },
     });
   },
+  props: {
+    modalVisible: {
+      type: Boolean,
+      required: true,
+    },
+  },
 };
+const { isDesktop } = useScreenSize();
 </script>
 <template>
-  <div class="bg">
+  <div :class="{ active: modalVisible }" class="bg">
     <div class="modal">
       <div class="close" v-on:click="$emit('update:modalVisible', false)"></div>
       <p class="modal__title">Фильтры</p>
@@ -111,6 +119,19 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
+  display: none;
+  transition: 0.5s !important;
+
+  &.active {
+    display: flex;
+    @media (max-width: 1024px) {
+      transform: translate(0);
+    }
+  }
+  @media (max-width: 1024px) {
+    display: flex;
+    transform: translateY(100%);
+  }
 }
 .modal {
   position: relative;
@@ -122,8 +143,12 @@ export default {
   flex-direction: column;
   overflow-y: scroll;
   scrollbar-width: none;
+  padding-bottom: 100px;
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media (max-width: 524px) {
+    width: 100vw;
   }
 }
 .close {
@@ -195,7 +220,7 @@ export default {
   font-family: Lato;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 140%;
   width: 100%;
   height: 100px;
@@ -236,9 +261,20 @@ export default {
   }
 }
 .radio-item {
-  display: flex;
   align-items: center;
   gap: 8px;
+  display: flex;
+  gap: 8px;
+  color: black;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160%; /* 25.6px */
+  letter-spacing: -0.16px;
+  span {
+    color: #939eaa;
+  }
 }
 .radio {
   display: none;
@@ -326,6 +362,9 @@ export default {
 
 .result {
   display: flex;
+  position: fixed;
+  bottom: 0;
+  width: inherit;
   margin-top: auto;
   background: white;
   box-shadow: 0px -1px 12px 0px rgba(0, 0, 0, 0.08);

@@ -12,18 +12,20 @@ const { isDesktop } = useScreenSize();
   <div class="container page">
     <Rubrics />
     <BreadCrumbs :router="crumbs" />
+
+    <h1 class="section__title">
+      Корпус металлический ЩУРв-3/48зо-1 36 УХЛ3 (ВхШхГ) 550x610x165мм IP31 |
+      MKM35-V-48-31-ZO IEK (ИЭК)
+    </h1>
+    <ProductNav v-if="!isDesktop" />
     <section class="section">
-      <h1 class="section__title">
-        Корпус металлический ЩУРв-3/48зо-1 36 УХЛ3 (ВхШхГ) 550x610x165мм IP31 |
-        MKM35-V-48-31-ZO IEK (ИЭК)
-      </h1>
-      <ProductNav v-if="!isDesktop" />
       <ProductIcons v-if="!isDesktop" />
       <div class="section__grid">
         <ProductSlider />
         <ProductOffers />
       </div>
     </section>
+
     <ProductInfo v-if="isDesktop" />
     <ProductInfoMobile v-if="!isDesktop" />
   </div>
@@ -37,10 +39,8 @@ const { isDesktop } = useScreenSize();
     margin-top: 130px;
   }
 }
-.section {
-  margin-top: 24px;
-}
 .section__title {
+  margin-top: 24px;
   margin-bottom: 32px;
   color: black;
   font-family: Lato;

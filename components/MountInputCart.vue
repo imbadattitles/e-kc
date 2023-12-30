@@ -1,56 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
-const inputStatus = ref<"block" | "edit">("block");
-const addCart = () => {
-  inCart.value = true;
-};
-const modalOpen = () => {
-  modalVisible.value = true;
-};
-const props = defineProps({
-  type: {
-    type: String,
-    default: "counter",
-  },
-});
-const modalVisible = ref(false);
-const inCart = ref(false);
 const EdVisible = ref(true);
 </script>
 <template>
-  <Modal
-    v-if="props.type === 'modal' && modalVisible"
-    v-model:modalVisible="modalVisible"
-  />
   <div class="item__costRow-change">
     <div class="item__costRow-input">
-      <input
-        value="1"
-        @focus="EdVisible = false"
-        @blur="EdVisible = true"
-        :disabled="!inCart"
-      />
+      <input value="1" @focus="EdVisible = false" @blur="EdVisible = true" />
       <div v-if="EdVisible" class="colWo">шт.</div>
-      <div v-if="inCart" class="change">
-        <div v-on:mousedown="event.preventDefault()" class="minus"></div>
-        <div v-on:mousedown.stop class="plus"></div>
+      <div class="change">
+        <div class="minus"></div>
+        <div class="plus"></div>
       </div>
-    </div>
-
-    <div
-      v-if="props.type === 'counter'"
-      v-on:click="addCart"
-      :class="!inCart ? 'blue' : 'red'"
-      class="item__costRow-btn"
-    >
-      <span :class="!inCart ? 'iconPlus' : 'iconOk'" />
-    </div>
-    <div
-      v-if="props.type === 'modal'"
-      v-on:click="modalOpen"
-      class="item__costRow-btn blue"
-    >
-      <span class="iconArrow" />
     </div>
   </div>
 </template>
@@ -75,9 +35,7 @@ const EdVisible = ref(true);
   /* Lato 13 Reg */
   font-family: Lato;
   padding: 11px 8px;
-  border-top: 1px solid #e2e2e2;
-  border-bottom: 1px solid #e2e2e2;
-  border-left: 1px solid #e2e2e2;
+  border: 1px solid #e2e2e2;
   @media (max-width: 1024px) {
     width: 100%;
   }

@@ -101,8 +101,7 @@ const benefits = [
 </template>
 <style scoped>
 .section {
-  padding-top: 60px;
-  padding-top: 40px;
+  padding-top: 70px;
 }
 .firstRow {
   display: flex;
@@ -269,7 +268,7 @@ const benefits = [
   font-family: Lato;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 140%;
 }
 </style>

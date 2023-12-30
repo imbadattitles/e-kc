@@ -1,77 +1,63 @@
-<script setup lang="ts">
+<script setup>
 import { defineProps } from "vue";
-import useScreenSize from "./size";
-const props = defineProps(["item"]);
-const { isDesktop } = useScreenSize();
+const props = defineProps(["items"]);
 </script>
 
 <template>
-  <div v-if="isDesktop" class="item">
-    <img :src="item.img" class="item__img" />
-    <div class="item__info">
-      <a class="item__title">{{ item.title }}</a>
-      <div class="item__info-row">
-        <div class="item__info-left">
-          <div class="brand">
-            <span>Бренд:</span>
-            <a class="important" href="/"
-              ><h5>{{ item.brand }}</h5></a
-            >
-          </div>
-          <div class="over">
-            <span>Доступно:</span>
-            <p class="important">{{ item.over }}</p>
-          </div>
-        </div>
+  <div class="grid">
+    <div v-for="(item, index) in items" :key="index" class="item">
+      <div class="left">
+        <img :src="item.img" class="item__img" />
         <div class="item__info-right">
           <span class="analog" />
           <span class="compare" />
           <span class="like" />
         </div>
       </div>
-    </div>
-    <div class="item__costRow">
-      <p class="item__costRow-cost">{{ item.cost }} ₽</p>
-      <MountInput :type="item?.modal && 'modal'" />
-    </div>
-    <span class="borderTop" />
-    <span class="borderBottom" />
-    <span class="borderLeft" />
-    <span class="borderRight" />
-  </div>
-
-  <div v-else class="item">
-    <div class="left">
-      <img :src="item.img" class="item__img" />
-      <div class="item__info-right">
-        <span class="analog" />
-        <span class="compare" />
-        <span class="like" />
-      </div>
-    </div>
-    <div class="right">
-      <a class="item__title">{{ item.title }}</a>
-      <div class="group">
-        <div class="over_mobile">
-          <span class="name">Доступно:</span>
-          <span class="line" />
-          <p class="important">{{ item.over }}</p>
+      <div class="right">
+        <a class="item__title">{{ item.title }}</a>
+        <div class="group">
+          <div class="over_mobile">
+            <span class="name">Доступно:</span>
+            <span class="line" />
+            <p class="important">{{ item.over }}</p>
+          </div>
+          <div class="over_mobile">
+            <span class="name">Цена:</span>
+            <span class="line" />
+            <p class="important price">{{ item.cost }} ₽</p>
+          </div>
         </div>
-        <div class="over_mobile">
-          <span class="name">Цена:</span>
-          <span class="line" />
-          <p class="important price">{{ item.cost }} ₽</p>
-        </div>
+        <MountInput :type="item?.modal" />
       </div>
-      <MountInput :type="item?.modal" />
+      <span class="borderTop" />
+      <span class="borderBottom" />
+      <span class="borderLeft" />
+      <span class="borderRight" />
     </div>
-    <span class="borderTop" />
-    <span class="borderBottom" />
-    <span class="borderLeft" />
-    <span class="borderRight" />
   </div>
 </template>
 <style scoped>
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 100%;
+  border: 1px solid #dce6ef;
+  border-right: 2px solid #dce6ef;
+  border-bottom: 2px solid #dce6ef;
+  @media (max-width: 1324px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 524px) {
+      grid-template-columns: 1fr;
+      border-left: none;
+      border-right: none;
+    }
+  }
+}
 .item {
   display: flex;
   flex-direction: column;

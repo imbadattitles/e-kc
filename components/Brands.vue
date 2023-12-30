@@ -593,7 +593,7 @@ const items = [
   line-height: 160%; /* 25.6px */
   letter-spacing: -0.16px;
   padding-bottom: 2px;
-  border-bottom: 1px dotted rgba(0, 90, 188, 0.4);
+  border-bottom: 1px dashed rgba(0, 90, 188, 0.4);
   &:hover,
   :focus {
     opacity: 0.6;

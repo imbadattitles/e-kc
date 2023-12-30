@@ -46,8 +46,7 @@ const items = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   background: white;
   &:hover,
   &:focus {
-    color: #1461b4;
-    text-decoration: underline;
+    background: rgb(244, 249, 255);
   }
   @media (max-width: 1024px) {
     flex: none;

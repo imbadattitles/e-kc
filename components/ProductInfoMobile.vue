@@ -18,7 +18,11 @@ const clickNav = (nav) => {
 <template>
   <section class="section">
     <div class="infoContainer">
-      <div :class="openNav === 'Описание' && 'active'" class="info__group">
+      <div
+        id="1"
+        :class="openNav === 'Описание' && 'active'"
+        class="info__group"
+      >
         <div v-on:click="clickNav('Описание')" class="info__nav">
           <h3 class="info__nav-title">Описание</h3>
           <span class="info__nav-arrow"></span>
@@ -42,6 +46,7 @@ const clickNav = (nav) => {
         </div>
       </div>
       <div
+        id="2"
         :class="openNav === 'Характеристики' && 'active'"
         class="info__group"
       >
@@ -115,6 +120,7 @@ const clickNav = (nav) => {
       </div>
 
       <div
+        id="3"
         :class="openNav === 'Условия поставки' && 'active'"
         class="info__group"
       >
@@ -145,6 +151,7 @@ const clickNav = (nav) => {
       </div>
 
       <div
+        id="4"
         :class="openNav === 'Документы' && 'active'"
         class="info__group last-child"
       >
@@ -167,7 +174,7 @@ const clickNav = (nav) => {
         </div>
       </div>
 
-      <div class="info__group items">
+      <div id="5" class="info__group items">
         <h3 class="section__title">Аналоги</h3>
         <div class="grid">
           <div v-for="(item, index) in items" :key="index" class="item">
@@ -206,7 +213,7 @@ const clickNav = (nav) => {
         </div>
       </div>
 
-      <div class="info__group items">
+      <div id="6" class="info__group items">
         <h3 class="section__title">Сопутствующие товары</h3>
         <div class="grid">
           <div v-for="(item, index) in items" :key="index" class="item">
@@ -602,7 +609,7 @@ const clickNav = (nav) => {
         font-family: Lato;
         font-size: 14px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 500;
         line-height: 140%;
         &.price {
           font-weight: 700;

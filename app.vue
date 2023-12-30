@@ -3,6 +3,7 @@
     <NuxtLayout>
       <Header v-if="isDesktop" />
       <HeaderMobile v-if="isMobile" />
+
       <main>
         <NuxtPage />
       </main>
@@ -21,8 +22,7 @@ const { isDesktop, isMobile } = useScreenSize();
   box-sizing: border-box;
 }
 main {
-  overflow-y: hidden;
-  min-height: 80vh;
+  height: auto;
 }
 
 .container {

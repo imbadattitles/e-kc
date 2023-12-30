@@ -183,7 +183,7 @@
   font-family: Lato;
   font-size: 13px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 140%;
   max-width: 240px;
   margin-bottom: 25px;

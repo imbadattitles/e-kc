@@ -43,15 +43,7 @@ const delivery = ref("1");
         </td>
         <td class="price">44 442.85 ₽</td>
         <td class="amount">
-          <div class="item__costRow-change">
-            <div class="item__costRow-input">
-              <div class="change">
-                <div class="minus"></div>
-                <div class="plus"></div>
-              </div>
-              0 шт
-            </div>
-          </div>
+          <MountInputCart />
         </td>
         <td class="cost">73 444 442.85 ₽</td>
         <td>
@@ -228,7 +220,11 @@ const delivery = ref("1");
       <form class="form">
         <p class="form__title">Адрес получателя</p>
         <div class="form__items">
-          <input type="text" placeholder="Ваше имя*" class="form__input" />
+          <input
+            type="text"
+            placeholder="Ваше имя*"
+            class="form__input active"
+          />
           <input type="text" placeholder="Email*" class="form__input" />
           <input type="text" placeholder="Телефон*" class="form__input" />
           <input type="text" placeholder="Адрес доставки" class="form__input" />
@@ -505,6 +501,7 @@ const delivery = ref("1");
 
 .form {
   width: 100%;
+
   .form__title {
     margin-bottom: 16px;
     color: black;
@@ -542,10 +539,15 @@ const delivery = ref("1");
     }
     &:focus {
       outline: 2px solid var(--akcent);
+      background: white;
     }
     @media (max-width: 1024px) {
       font-size: 14px;
       padding: 16px 16px;
+    }
+    &.active {
+      outline: 2px solid var(--akcent);
+      background: white;
     }
   }
   .form__textarea {
@@ -580,7 +582,7 @@ const delivery = ref("1");
       border: none;
     }
     .form__smeta {
-      font-weight: 400;
+      font-weight: 500;
       border: 2px solid #dce6ef;
       color: var(--akcent);
       background: none;

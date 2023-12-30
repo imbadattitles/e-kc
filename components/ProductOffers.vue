@@ -250,7 +250,7 @@ const { isDesktop } = useScreenSize();
       font-family: Lato;
       font-size: 14px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 140%;
       &.price {
         font-weight: 700;

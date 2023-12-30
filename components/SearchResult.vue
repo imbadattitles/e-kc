@@ -9,7 +9,7 @@ const openModal = () => {
 const openFilters = () => {
   filtersVisible.value = true;
 };
-const resultType = ref<"table" | "grid">("grid");
+const resultType = ref<"table" | "grid">("table");
 const changeType = (type: "table" | "grid") => {
   resultType.value = type;
 };
@@ -142,18 +142,29 @@ const { isDesktop } = useScreenSize();
           v-on:click="changeType('grid')"
           :class="resultType === 'grid' && 'active'"
           class="types__grid"
-        ></div>
+        >
+          <span></span>
+        </div>
         <div
           v-on:click="changeType('table')"
           class="types__line"
           :class="resultType === 'table' && 'active'"
-        ></div>
+        >
+          <span></span>
+        </div>
       </div>
     </div>
-    <Filters v-model:modalVisible="filtersVisible" v-if="filtersVisible" />
+    <Filters v-model:modalVisible="filtersVisible" />
     <Modal v-model:modalVisible="modalVisible" v-if="modalVisible" />
-    <SearchResultGrid v-if="resultType === 'grid'" :items="items" />
-    <SearchResultTable v-if="resultType === 'table'" :items="items" />
+    <SearchResultGrid
+      v-if="resultType === 'grid' && isDesktop"
+      :items="items"
+    />
+    <SearchResultTable
+      v-if="resultType === 'table' && isDesktop"
+      :items="items"
+    />
+    <SearchResultGridMobile v-if="!isDesktop" :items="items" />
     <More />
   </div>
 </template>
@@ -194,7 +205,7 @@ const { isDesktop } = useScreenSize();
   font-family: Lato;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 140%;
 }
 .banner__link {
@@ -298,9 +309,12 @@ const { isDesktop } = useScreenSize();
   display: flex;
   margin-left: auto;
   div {
-    padding: 8px;
+    padding: 24px;
     width: 32px;
     height: 32px;
+    background-color: none;
+    background-position: center;
+    background-repeat: no-repeat;
     &:hover,
     :focus {
       background-color: #dce6ef;
@@ -313,7 +327,6 @@ const { isDesktop } = useScreenSize();
 .types__grid {
   cursor: pointer;
   background-image: url("/searchResult/typesGrid.svg");
-  background-color: none;
 }
 .types__line {
   cursor: pointer;

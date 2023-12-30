@@ -86,7 +86,7 @@ const setMode = (newValue: "procenka" | "orders") => {
   font-family: Lato;
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 160%; /* 25.6px */
   letter-spacing: -0.16px;
 }

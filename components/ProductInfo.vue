@@ -14,10 +14,10 @@ const { isDesktop } = useScreenSize();
   <section class="section">
     <ProductNav />
     <div class="infoContainer">
-      <div class="info__group">
+      <div id="1" class="info__group">
         <h3 class="section__title">
-          Технические храктеристики Корпуса металлического ЩУРв-3/48зо-1 36 УХЛ3
-          IP31 MKM35-V-48-31-ZO
+          Описание Корпуса металлического ЩУРв-3/48зо-1 36 УХЛ3 IP31
+          MKM35-V-48-31-ZO
         </h3>
         <div class="section__description">
           <div
@@ -31,7 +31,7 @@ const { isDesktop } = useScreenSize();
           </div>
         </div>
       </div>
-      <div class="info__group">
+      <div id="2" class="info__group">
         <h3 class="section__title">
           Технические храктеристики Корпуса металлического ЩУРв-3/48зо-1 36 УХЛ3
           IP31 MKM35-V-48-31-ZO
@@ -93,7 +93,7 @@ const { isDesktop } = useScreenSize();
         </div>
       </div>
 
-      <div class="info__group">
+      <div id="3" class="info__group">
         <h3 class="section__title">
           Условия поставки выключателя нагрузки (мод. рубильник) 2П 80А 500В =S=
           EASY9 | EZ9S16280 Schneider Electric
@@ -114,7 +114,7 @@ const { isDesktop } = useScreenSize();
         </div>
       </div>
 
-      <div class="info__group">
+      <div id="4" class="info__group">
         <h3 class="section__title">Документы</h3>
         <div class="section__documents">
           <div
@@ -128,7 +128,7 @@ const { isDesktop } = useScreenSize();
         </div>
       </div>
 
-      <div class="info__group">
+      <div id="5" class="info__group">
         <h3 class="section__title">Аналоги</h3>
         <table v-if="isDesktop" class="analogs">
           <tr v-for="(item, index) in documents" :key="index">
@@ -180,7 +180,7 @@ const { isDesktop } = useScreenSize();
         </div>
       </div>
 
-      <div class="info__group">
+      <div id="6" class="info__group">
         <h3 class="section__title">Сопутствующие товары</h3>
         <table v-if="isDesktop" class="analogs">
           <tr v-for="(item, index) in documents" :key="index">
@@ -235,6 +235,10 @@ const { isDesktop } = useScreenSize();
   </section>
 </template>
 <style scoped>
+.section {
+  position: relative;
+  height: auto;
+}
 .analogs {
   width: 100%;
   td {
