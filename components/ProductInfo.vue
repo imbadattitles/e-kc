@@ -145,39 +145,6 @@ const { isDesktop } = useScreenSize();
             <td class="from">от 1 мес.</td>
           </tr>
         </table>
-        <div v-if="!isDesktop" class="grid">
-          <div v-for="(item, index) in items" :key="index" class="item">
-            <div class="left">
-              <img :src="item.img" class="item__img" />
-              <div class="item__info-right">
-                <span class="analog" />
-                <span class="compare" />
-                <span class="like" />
-              </div>
-            </div>
-            <div class="right">
-              <a class="item__title">{{ item.title }}</a>
-              <div class="group">
-                <div class="over_mobile">
-                  <span class="name">Доступно:</span>
-                  <span class="line" />
-                  <p class="important">{{ item.over }}</p>
-                </div>
-                <div class="over_mobile">
-                  <span class="name">Цена:</span>
-                  <span class="line" />
-                  <p class="important price">{{ item.cost }} ₽</p>
-                </div>
-              </div>
-
-              <MountInput />
-            </div>
-            <span class="borderTop" />
-            <span class="borderBottom" />
-            <span class="borderLeft" />
-            <span class="borderRight" />
-          </div>
-        </div>
       </div>
 
       <div id="6" class="info__group">
@@ -197,39 +164,6 @@ const { isDesktop } = useScreenSize();
             <td class="from">от 1 мес.</td>
           </tr>
         </table>
-        <div v-if="!isDesktop" class="grid">
-          <div v-for="(item, index) in items" :key="index" class="item">
-            <div class="left">
-              <img :src="item.img" class="item__img" />
-              <div class="item__info-right">
-                <span class="analog" />
-                <span class="compare" />
-                <span class="like" />
-              </div>
-            </div>
-            <div class="right">
-              <a class="item__title">{{ item.title }}</a>
-              <div class="group">
-                <div class="over_mobile">
-                  <span class="name">Доступно:</span>
-                  <span class="line" />
-                  <p class="important">{{ item.over }}</p>
-                </div>
-                <div class="over_mobile">
-                  <span class="name">Цена:</span>
-                  <span class="line" />
-                  <p class="important price">{{ item.cost }} ₽</p>
-                </div>
-              </div>
-
-              <MountInput />
-            </div>
-            <span class="borderTop" />
-            <span class="borderBottom" />
-            <span class="borderLeft" />
-            <span class="borderRight" />
-          </div>
-        </div>
       </div>
     </div>
   </section>

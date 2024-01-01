@@ -867,8 +867,18 @@ const delivery = ref("1");
     min-width: 20px;
     height: 20px;
     background: url("/searchResult/like.svg");
-    &.active {
+    &::after {
+      content: "";
+      display: block;
       background-image: url("/searchResult/likeActive.svg");
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+    }
+    &.active {
+      &::after {
+        opacity: 1;
+      }
     }
   }
 }

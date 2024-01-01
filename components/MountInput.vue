@@ -31,7 +31,7 @@ const EdVisible = ref(true);
         :disabled="!inCart"
       />
       <div v-if="EdVisible" class="colWo">шт.</div>
-      <div v-if="inCart" class="change">
+      <div :class="{ active: inCart }" class="change">
         <div v-on:mousedown="event.preventDefault()" class="minus"></div>
         <div v-on:mousedown.stop class="plus"></div>
       </div>
@@ -43,7 +43,8 @@ const EdVisible = ref(true);
       :class="!inCart ? 'blue' : 'red'"
       class="item__costRow-btn"
     >
-      <span :class="!inCart ? 'iconPlus' : 'iconOk'" />
+      <span class="iconPlus" :class="{ active: !inCart }" />
+      <span class="iconOk" :class="{ active: inCart }" />
     </div>
     <div
       v-if="props.type === 'modal'"
@@ -103,6 +104,8 @@ const EdVisible = ref(true);
   }
 }
 .change {
+  opacity: 0;
+  pointer-events: none;
   display: flex;
   align-items: center;
   position: absolute;
@@ -113,6 +116,10 @@ const EdVisible = ref(true);
   @media (max-width: 1024px) {
     left: 15px;
     gap: 20px;
+  }
+  &.active {
+    pointer-events: all;
+    opacity: 1;
   }
   .plus {
     width: 24px;
@@ -162,14 +169,30 @@ const EdVisible = ref(true);
   }
 }
 .iconPlus {
-  width: 24px;
-  height: 24px;
+  width: 0px;
+  height: 0px;
+  pointer-events: none;
+  opacity: 0;
   background-image: url("/searchResult/plus.svg");
+  &.active {
+    width: 24px;
+    height: 24px;
+    pointer-events: all;
+    opacity: 1;
+  }
 }
 .iconOk {
-  width: 24px;
-  height: 24px;
+  width: 0px;
+  height: 0px;
+  pointer-events: none;
+  opacity: 0;
   background-image: url("/searchResult/ok.svg");
+  &.active {
+    width: 24px;
+    height: 24px;
+    pointer-events: all;
+    opacity: 1;
+  }
 }
 .iconArrow {
   width: 24px;

@@ -44,7 +44,7 @@ onUnmounted(() => {
       <Search />
     </div>
   </header>
-  <div class="menuBg" v-if="menuVisible">
+  <div :class="{ scroll: isScrolling }" class="menuBg" v-if="menuVisible">
     <div class="menu">
       <div class="menuRow city">
         <div class="icon"></div>
@@ -203,6 +203,9 @@ onUnmounted(() => {
   width: 100%;
   z-index: 10;
   background: rgba(0, 0, 0, 0.64);
+  &.scroll {
+    top: 60px;
+  }
 }
 .menu {
   overflow-y: visible !important;

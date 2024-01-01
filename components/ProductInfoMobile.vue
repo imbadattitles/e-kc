@@ -680,8 +680,18 @@ const clickNav = (nav) => {
     }
     .like {
       background-image: url("/searchResult/like.svg");
-      &.active {
+      &::after {
+        content: "";
+        display: block;
         background-image: url("/searchResult/likeActive.svg");
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+      }
+      &.active {
+        &::after {
+          opacity: 1;
+        }
       }
     }
   }
