@@ -6,9 +6,14 @@ const openModal = () => {
 const openCity = () => {
   cityVisible.value = true;
 };
+
+const openCatalog = () => {
+  catalogVisible.value = true;
+};
 const isScrolling = ref(false);
 const modalVisible = ref(false);
 const cityVisible = ref(false);
+const catalogVisible = ref(false);
 
 const handleScroll = () => {
   isScrolling.value = window.pageYOffset > 200;
@@ -26,6 +31,10 @@ onUnmounted(() => {
 <template>
   <Login v-model:modalVisible="modalVisible" v-if="modalVisible" />
   <CityModal v-model:modalVisible="cityVisible" v-if="cityVisible" />
+  <CatalogMenuModal
+    v-model:modalVisible="catalogVisible"
+    v-if="catalogVisible"
+  />
   <header :class="{ scroll: isScrolling }" class="header">
     <div class="container">
       <div class="header__firstRow">
@@ -62,7 +71,7 @@ onUnmounted(() => {
           ><img src="/header/logo.svg" alt="e-kc.ru" class="logo"
         /></a>
         <div class="flexGroup">
-          <div class="catalog__btn">
+          <div v-on:click="openCatalog" class="catalog__btn">
             <span class="catalog__burger" />
             <p>Каталог</p>
           </div>
@@ -226,6 +235,7 @@ onUnmounted(() => {
 }
 
 .catalog__btn {
+  cursor: pointer;
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.24);
@@ -242,6 +252,10 @@ onUnmounted(() => {
     width: 24px;
     height: 24px;
     background-image: url("/header/catalog__burger.svg");
+  }
+  &:hover,
+  &:focus {
+    background: rgba(231, 230, 230, 0.24);
   }
 }
 

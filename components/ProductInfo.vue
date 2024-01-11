@@ -11,159 +11,163 @@ const setAccordeon = (index) => {
 const { isDesktop } = useScreenSize();
 </script>
 <template>
-  <section class="section">
+  <section id="parent" class="section">
     <ProductNav />
-    <div class="infoContainer">
-      <div id="1" class="info__group">
-        <h3 class="section__title">
-          Описание Корпуса металлического ЩУРв-3/48зо-1 36 УХЛ3 IP31
-          MKM35-V-48-31-ZO
-        </h3>
-        <div class="section__description">
-          <div
-            v-for="(item, index) in description"
-            :key="index"
-            class="section__description-item"
-          >
-            <p class="item__type">Тип монтажа</p>
-            <div class="line"></div>
-            <p class="item__text">Встраиваемый</p>
-          </div>
-        </div>
-      </div>
-      <div id="2" class="info__group">
-        <h3 class="section__title">
-          Технические храктеристики Корпуса металлического ЩУРв-3/48зо-1 36 УХЛ3
-          IP31 MKM35-V-48-31-ZO
-        </h3>
-        <div class="section__accordeon">
-          <div
-            v-on:click="setAccordeon(index)"
-            :class="accordeonActive === index && 'active'"
-            v-for="(item, index) in accordeon"
-            :key="index"
-            class="accordeon__item"
-          >
-            <div class="flex">
-              <p class="accordeon__item-type">Материал:</p>
-              <p class="accordeon__item-title">Листовая сталь</p>
-              <div class="arrow"></div>
-            </div>
-            <div class="ul">
-              <p class="accordeon__item-text">
-                Свойство «Материал» для корпусов шкафов готовых:
-              </p>
-              <ul class="accordeon__item-list">
-                <li class="item">
-                  Сталь: прочный материал, устойчивый к механическим
-                  воздействиям, но склонный к коррозии в условиях высокой
-                  влажности или агрессивной среды. Сталь: прочный материал,
-                  устойчивый к механическим воздействиям, но склонный к коррозии
-                  в условиях высокой влажности или агрессивной среды.
-                </li>
-                <li class="item">
-                  Нержавеющая сталь: материал, обладающий высокой коррозионной
-                  стойкостью и прочностью, но более дорогой, чем обычная сталь.
-                </li>
-                <li class="item">
-                  Сталь: прочный материал, устойчивый к механическим
-                  воздействиям, но склонный к коррозии в условиях высокой
-                  влажности или агрессивной среды. Сталь: прочный материал,
-                  устойчивый к механическим воздействиям, но склонный к коррозии
-                  в условиях высокой влажности или агрессивной среды.
-                </li>
-                <li class="item">
-                  Нержавеющая сталь: материал, обладающий высокой коррозионной
-                  стойкостью и прочностью, но более дорогой, чем обычная сталь.
-                </li>
-              </ul>
+    <div class="container">
+      <div class="infoContainer">
+        <div id="1" class="info__group">
+          <h3 class="section__title">
+            Описание Корпуса металлического ЩУРв-3/48зо-1 36 УХЛ3 IP31
+            MKM35-V-48-31-ZO
+          </h3>
+          <div class="section__description">
+            <div
+              v-for="(item, index) in description"
+              :key="index"
+              class="section__description-item"
+            >
+              <p class="item__type">Тип монтажа</p>
+              <div class="line"></div>
+              <p class="item__text">Встраиваемый</p>
             </div>
           </div>
         </div>
-        <div class="section__description">
-          <div
-            v-for="(item, index) in description"
-            :key="index"
-            class="section__description-item"
-          >
-            <p class="item__type">Тип монтажа <span>Что это?</span></p>
-            <div class="line"></div>
-            <p class="item__text">Встраиваемый</p>
+        <div id="2" class="info__group">
+          <h3 class="section__title">
+            Технические храктеристики Корпуса металлического ЩУРв-3/48зо-1 36
+            УХЛ3 IP31 MKM35-V-48-31-ZO
+          </h3>
+          <div class="section__accordeon">
+            <div
+              v-on:click="setAccordeon(index)"
+              :class="accordeonActive === index && 'active'"
+              v-for="(item, index) in accordeon"
+              :key="index"
+              class="accordeon__item"
+            >
+              <div class="flex">
+                <p class="accordeon__item-type">Материал:</p>
+                <p class="accordeon__item-title">Листовая сталь</p>
+                <div class="arrow"></div>
+              </div>
+              <div class="ul">
+                <p class="accordeon__item-text">
+                  Свойство «Материал» для корпусов шкафов готовых:
+                </p>
+                <ul class="accordeon__item-list">
+                  <li class="item">
+                    Сталь: прочный материал, устойчивый к механическим
+                    воздействиям, но склонный к коррозии в условиях высокой
+                    влажности или агрессивной среды. Сталь: прочный материал,
+                    устойчивый к механическим воздействиям, но склонный к
+                    коррозии в условиях высокой влажности или агрессивной среды.
+                  </li>
+                  <li class="item">
+                    Нержавеющая сталь: материал, обладающий высокой коррозионной
+                    стойкостью и прочностью, но более дорогой, чем обычная
+                    сталь.
+                  </li>
+                  <li class="item">
+                    Сталь: прочный материал, устойчивый к механическим
+                    воздействиям, но склонный к коррозии в условиях высокой
+                    влажности или агрессивной среды. Сталь: прочный материал,
+                    устойчивый к механическим воздействиям, но склонный к
+                    коррозии в условиях высокой влажности или агрессивной среды.
+                  </li>
+                  <li class="item">
+                    Нержавеющая сталь: материал, обладающий высокой коррозионной
+                    стойкостью и прочностью, но более дорогой, чем обычная
+                    сталь.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section__description">
+            <div
+              v-for="(item, index) in description"
+              :key="index"
+              class="section__description-item"
+            >
+              <p class="item__type">Тип монтажа <span>Что это?</span></p>
+              <div class="line"></div>
+              <p class="item__text">Встраиваемый</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div id="3" class="info__group">
-        <h3 class="section__title">
-          Условия поставки выключателя нагрузки (мод. рубильник) 2П 80А 500В =S=
-          EASY9 | EZ9S16280 Schneider Electric
-        </h3>
-        <div class="section__deliveryСonditions">
-          <p>
-            Доставим выключатель нагрузки (мод. рубильник) 2П 80А 500В =S= EASY9
-            | EZ9S16280 Schneider Electric на следующий день после оплаты, по
-            Москве и в радиусе 200 км от МКАД, в другие регионы РФ отгружаем
-            транспортными компаниями.
-          </p>
-          <p>
-            Доставим выключатель нагрузки (мод. рубильник) 2П 80А 500В =S= EASY9
-            | EZ9S16280 Schneider Electric на следующий день после оплаты, по
-            Москве и в радиусе 200 км от МКАД, в другие регионы РФ отгружаем
-            транспортными компаниями.
-          </p>
-        </div>
-      </div>
-
-      <div id="4" class="info__group">
-        <h3 class="section__title">Документы</h3>
-        <div class="section__documents">
-          <div
-            v-for="(item, index) in documents"
-            :key="index"
-            class="section__documents-item"
-          >
-            <p class="title">Изображение сертификата</p>
-            <p class="type">PNG</p>
+        <div id="3" class="info__group">
+          <h3 class="section__title">
+            Условия поставки выключателя нагрузки (мод. рубильник) 2П 80А 500В
+            =S= EASY9 | EZ9S16280 Schneider Electric
+          </h3>
+          <div class="section__deliveryСonditions">
+            <p>
+              Доставим выключатель нагрузки (мод. рубильник) 2П 80А 500В =S=
+              EASY9 | EZ9S16280 Schneider Electric на следующий день после
+              оплаты, по Москве и в радиусе 200 км от МКАД, в другие регионы РФ
+              отгружаем транспортными компаниями.
+            </p>
+            <p>
+              Доставим выключатель нагрузки (мод. рубильник) 2П 80А 500В =S=
+              EASY9 | EZ9S16280 Schneider Electric на следующий день после
+              оплаты, по Москве и в радиусе 200 км от МКАД, в другие регионы РФ
+              отгружаем транспортными компаниями.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div id="5" class="info__group">
-        <h3 class="section__title">Аналоги</h3>
-        <table v-if="isDesktop" class="analogs">
-          <tr v-for="(item, index) in documents" :key="index">
-            <td><img src="/productPage/item.png" class="img" alt="" /></td>
-            <td class="title">
-              <a href=""
-                >Кабель Stereo 2х0.35 BLUE LINE бухта (м) PROCONNECT
-                01-6202-6</a
-              >
-            </td>
-            <td class="amount">224 шт</td>
-            <td class="price">121.22 ₽</td>
-            <td class="input"><MountInput /></td>
-            <td class="from">от 1 мес.</td>
-          </tr>
-        </table>
-      </div>
+        <div id="4" class="info__group">
+          <h3 class="section__title">Документы</h3>
+          <div class="section__documents">
+            <div
+              v-for="(item, index) in documents"
+              :key="index"
+              class="section__documents-item"
+            >
+              <p class="title">Изображение сертификата</p>
+              <p class="type">PNG</p>
+            </div>
+          </div>
+        </div>
 
-      <div id="6" class="info__group">
-        <h3 class="section__title">Сопутствующие товары</h3>
-        <table v-if="isDesktop" class="analogs">
-          <tr v-for="(item, index) in documents" :key="index">
-            <td><img src="/productPage/item.png" class="img" alt="" /></td>
-            <td class="title">
-              <a href=""
-                >Кабель Stereo 2х0.35 BLUE LINE бухта (м) PROCONNECT
-                01-6202-6</a
-              >
-            </td>
-            <td class="amount">224 шт</td>
-            <td class="price">121.22 ₽</td>
-            <td class="input"><MountInput /></td>
-            <td class="from">от 1 мес.</td>
-          </tr>
-        </table>
+        <div id="5" class="info__group">
+          <h3 class="section__title">Аналоги</h3>
+          <table v-if="isDesktop" class="analogs">
+            <tr v-for="(item, index) in documents" :key="index">
+              <td><img src="/productPage/item.png" class="img" alt="" /></td>
+              <td class="title">
+                <a href=""
+                  >Кабель Stereo 2х0.35 BLUE LINE бухта (м) PROCONNECT
+                  01-6202-6</a
+                >
+              </td>
+              <td class="amount">224 шт</td>
+              <td class="price">121.22 ₽</td>
+              <td class="input"><MountInput /></td>
+              <td class="from">от 1 мес.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div id="6" class="info__group">
+          <h3 class="section__title">Сопутствующие товары</h3>
+          <table v-if="isDesktop" class="analogs">
+            <tr v-for="(item, index) in documents" :key="index">
+              <td><img src="/productPage/item.png" class="img" alt="" /></td>
+              <td class="title">
+                <a href=""
+                  >Кабель Stereo 2х0.35 BLUE LINE бухта (м) PROCONNECT
+                  01-6202-6</a
+                >
+              </td>
+              <td class="amount">224 шт</td>
+              <td class="price">121.22 ₽</td>
+              <td class="input"><MountInput /></td>
+              <td class="from">от 1 мес.</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </section>
@@ -351,6 +355,7 @@ const { isDesktop } = useScreenSize();
   max-width: 1056px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 56px;
 }
 .section__title {

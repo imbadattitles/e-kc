@@ -5,6 +5,7 @@ const openModal = () => {
 };
 const modalVisible = ref(false);
 const menuVisible = ref(false);
+const prevScrollPosition = ref(null);
 const clickHeader = () => {
   menuVisible.value = !menuVisible.value;
 };
@@ -15,7 +16,9 @@ const clickCatalog = () => {
 
 const isScrolling = ref(false);
 const handleScroll = () => {
-  isScrolling.value = window.pageYOffset > 200;
+  const currentScrollPosition = window.pageYOffset;
+  isScrolling.value = currentScrollPosition > prevScrollPosition.value;
+  prevScrollPosition.value = currentScrollPosition;
 };
 
 onMounted(() => {
@@ -142,7 +145,7 @@ onUnmounted(() => {
   padding: 16px 16px 0px 16px;
   overflow: hidden;
   height: 112px;
-  transition: 1s !important;
+  transition: 0.5s !important;
   &.scroll {
     height: 60px;
   }

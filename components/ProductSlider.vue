@@ -66,15 +66,19 @@ const { isDesktop } = useScreenSize();
 </template>
 <style scoped>
 .section__slider {
+  position: sticky;
+  top: 100px;
   width: 100%;
   display: flex;
   align-items: flex-start;
   gap: 24px;
   @media (max-width: 1024px) {
+    position: relative;
     padding: 0 15px;
     flex-direction: column-reverse;
     align-items: center;
     gap: 8px;
+    top: 0;
   }
   .slider {
     height: auto;

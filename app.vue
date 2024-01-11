@@ -24,6 +24,11 @@ const { isDesktop, isMobile } = useScreenSize();
 main {
   height: auto;
 }
+option {
+  font-weight: 500;
+  font-size: 18px !important;
+  font-family: Lato;
+}
 
 .container {
   max-width: 1620px;

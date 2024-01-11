@@ -9,16 +9,19 @@ const crumbs = [
 const { isDesktop } = useScreenSize();
 </script>
 <template>
-  <div class="container page">
-    <Rubrics />
-    <BreadCrumbs :router="crumbs" />
+  <div class="page">
+    <div class="container">
+      <Rubrics />
+      <BreadCrumbs :router="crumbs" />
 
-    <h1 class="section__title">
-      Корпус металлический ЩУРв-3/48зо-1 36 УХЛ3 (ВхШхГ) 550x610x165мм IP31 |
-      MKM35-V-48-31-ZO IEK (ИЭК)
-    </h1>
+      <h1 class="section__title">
+        Корпус металлический ЩУРв-3/48зо-1 36 УХЛ3 (ВхШхГ) 550x610x165мм IP31 |
+        MKM35-V-48-31-ZO IEK (ИЭК)
+      </h1>
+    </div>
+    <div v-if="!isDesktop" id="parent"></div>
     <ProductNav v-if="!isDesktop" />
-    <section class="section">
+    <section class="section container">
       <ProductIcons v-if="!isDesktop" />
       <div class="section__grid">
         <ProductSlider />
@@ -27,7 +30,9 @@ const { isDesktop } = useScreenSize();
     </section>
 
     <ProductInfo v-if="isDesktop" />
-    <ProductInfoMobile v-if="!isDesktop" />
+    <div class="container">
+      <ProductInfoMobile v-if="!isDesktop" />
+    </div>
   </div>
 </template>
 <style scoped>
@@ -60,6 +65,7 @@ const { isDesktop } = useScreenSize();
   gap: 40px;
   grid-template-columns: 650px auto;
   justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 56px;
   @media (max-width: 1024px) {
     display: block;
